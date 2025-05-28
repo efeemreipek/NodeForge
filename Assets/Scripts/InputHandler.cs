@@ -7,14 +7,20 @@ public class InputHandler : Singleton<InputHandler>
 
     private InputAction actionMousePosition;
     private InputAction actionMouseLeftClick;
+    private InputAction actionCameraMove;
+    private InputAction actionCameraZoom;
 
     private Vector2 mousePosition;
     private bool mouseLeftClickPressed, mouseLeftClickHold, mouseLeftClickReleased;
+    private Vector2 cameraMove;
+    private float cameraZoom;
 
     public Vector2 MousePosition => mousePosition;
     public bool MouseLeftClickPressed => mouseLeftClickPressed;
     public bool MouseLeftClickHold => mouseLeftClickHold;
     public bool MouseLeftClickReleased => mouseLeftClickReleased;
+    public Vector2 CameraMove => cameraMove;
+    public float CameraZoom => cameraZoom;
 
     private void OnEnable()
     {
@@ -40,6 +46,8 @@ public class InputHandler : Singleton<InputHandler>
     {
         actionMousePosition = inputActionAsset.FindAction("Mouse Position");
         actionMouseLeftClick = inputActionAsset.FindAction("Mouse Left Click");
+        actionCameraMove = inputActionAsset.FindAction("Camera Move");
+        actionCameraZoom = inputActionAsset.FindAction("Camera Zoom");
     }
     private void SubscribeToInputEvents()
     {
@@ -48,6 +56,12 @@ public class InputHandler : Singleton<InputHandler>
 
         actionMouseLeftClick.performed += MouseLeftClick_Performed;
         actionMouseLeftClick.canceled += MouseLeftClick_Canceled;
+
+        actionCameraMove.performed += CameraMove_Performed;
+        actionCameraMove.canceled += CameraMove_Canceled;
+
+        actionCameraZoom.performed += CameraZoom_Performed;
+        actionCameraZoom.canceled += CameraZoom_Canceled;
     }
     private void UnsubscribeFromInputEvents()
     {
@@ -56,6 +70,12 @@ public class InputHandler : Singleton<InputHandler>
 
         actionMouseLeftClick.performed -= MouseLeftClick_Performed;
         actionMouseLeftClick.canceled -= MouseLeftClick_Canceled;
+
+        actionCameraMove.performed -= CameraMove_Performed;
+        actionCameraMove.canceled -= CameraMove_Canceled;
+
+        actionCameraZoom.performed -= CameraZoom_Performed;
+        actionCameraZoom.canceled -= CameraZoom_Canceled;
     }
 
     private void MousePosition_Performed(InputAction.CallbackContext obj) => mousePosition = obj.ReadValue<Vector2>();
@@ -70,4 +90,8 @@ public class InputHandler : Singleton<InputHandler>
         mouseLeftClickHold = false;
         mouseLeftClickReleased = true;
     }
+    private void CameraMove_Performed(InputAction.CallbackContext obj) => cameraMove = obj.ReadValue<Vector2>();
+    private void CameraMove_Canceled(InputAction.CallbackContext obj) => cameraMove = Vector2.zero;
+    private void CameraZoom_Performed(InputAction.CallbackContext obj) => cameraZoom = obj.ReadValue<float>();
+    private void CameraZoom_Canceled(InputAction.CallbackContext obj) => cameraZoom = 0f;
 }
