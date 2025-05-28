@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GridDrawer : MonoBehaviour
+public class GridDrawer : Singleton<GridDrawer>
 {
     [SerializeField] private float cellSize = 1f;
     [SerializeField] private int width = 50;
@@ -8,6 +8,8 @@ public class GridDrawer : MonoBehaviour
     [SerializeField] private float lineWidth = 0.05f;
     [SerializeField] private Material lineMaterial;
     [SerializeField] private Color lineColor = Color.black;
+
+    public float CellSize => cellSize;
 
     private void Start()
     {
