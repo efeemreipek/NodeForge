@@ -5,6 +5,7 @@ public class GridDrawer : MonoBehaviour
     [SerializeField] private float cellSize = 1f;
     [SerializeField] private int width = 50;
     [SerializeField] private int height = 50;
+    [SerializeField] private float lineWidth = 0.05f;
     [SerializeField] private Material lineMaterial;
     [SerializeField] private Color lineColor = Color.black;
 
@@ -55,8 +56,8 @@ public class GridDrawer : MonoBehaviour
         lr.positionCount = 2;
         lr.SetPosition(0, start);
         lr.SetPosition(1, end);
-        lr.startWidth = 0.05f;
-        lr.endWidth = 0.05f;
+        lr.startWidth = lineWidth;
+        lr.endWidth = lineWidth;
         lr.material = lineMaterial;
         lr.startColor = lineColor;
         lr.endColor = lineColor;
