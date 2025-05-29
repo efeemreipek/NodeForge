@@ -64,6 +64,6 @@ public class GridDrawer : Singleton<GridDrawer>
         lr.startColor = lineColor;
         lr.endColor = lineColor;
         lr.useWorldSpace = true;
-        lr.sortingOrder = -1; // behind other objects
+        lr.sortingOrder = -2;
     }
 }
