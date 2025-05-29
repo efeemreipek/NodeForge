@@ -1,9 +1,13 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class InputHandler : Singleton<InputHandler>
 {
     [SerializeField] private InputActionAsset inputActionAsset;
+
+    private InputActionMap actionMapGame;
+    private InputActionMap actionMapCamera;
 
     private InputAction actionMousePosition;
     private InputAction actionMouseLeftClick;
@@ -25,7 +29,11 @@ public class InputHandler : Singleton<InputHandler>
     private void OnEnable()
     {
         if(inputActionAsset == null) inputActionAsset = InputSystem.actions;
-        inputActionAsset.Enable();
+
+        InitializeActionMaps();
+
+        actionMapGame.Enable();
+        actionMapCamera.Enable();
 
         InitializeInputActions();
         SubscribeToInputEvents();
@@ -34,7 +42,13 @@ public class InputHandler : Singleton<InputHandler>
     {
         UnsubscribeFromInputEvents();
 
-        inputActionAsset.Disable();
+        actionMapGame.Disable();
+        actionMapCamera.Disable();
+    }
+    private void Update()
+    {
+        if(IsMouseOverUI()) actionCameraZoom.Disable();
+        else actionCameraZoom.Enable();
     }
     private void LateUpdate()
     {
@@ -42,12 +56,19 @@ public class InputHandler : Singleton<InputHandler>
         mouseLeftClickReleased = false;
     }
 
+    private bool IsMouseOverUI() => EventSystem.current.IsPointerOverGameObject();
+    private void InitializeActionMaps()
+    {
+        actionMapGame = inputActionAsset.FindActionMap("Game");
+        actionMapCamera = inputActionAsset.FindActionMap("Camera");
+    }
     private void InitializeInputActions()
     {
-        actionMousePosition = inputActionAsset.FindAction("Mouse Position");
-        actionMouseLeftClick = inputActionAsset.FindAction("Mouse Left Click");
-        actionCameraMove = inputActionAsset.FindAction("Camera Move");
-        actionCameraZoom = inputActionAsset.FindAction("Camera Zoom");
+        actionMousePosition = actionMapGame.FindAction("Mouse Position");
+        actionMouseLeftClick = actionMapGame.FindAction("Mouse Left Click");
+
+        actionCameraMove = actionMapCamera.FindAction("Camera Move");
+        actionCameraZoom = actionMapCamera.FindAction("Camera Zoom");
     }
     private void SubscribeToInputEvents()
     {

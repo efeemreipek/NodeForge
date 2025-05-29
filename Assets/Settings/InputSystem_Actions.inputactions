@@ -22,24 +22,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Camera Move",
-                    "type": "Value",
-                    "id": "01760a35-4bb3-4419-8775-8d7e462b05e4",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "Camera Zoom",
-                    "type": "Value",
-                    "id": "9b4ec32d-5b54-4d24-93a2-439614efd230",
-                    "expectedControlType": "Axis",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -64,10 +46,47 @@
                     "action": "Mouse Left Click",
                     "isComposite": false,
                     "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Camera",
+            "id": "2ce430ce-6e1a-49d5-870f-af0fd7da1e77",
+            "actions": [
+                {
+                    "name": "Camera Move",
+                    "type": "Value",
+                    "id": "a8d0f53a-ff7e-4a88-a280-951ac7590c07",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Camera Zoom",
+                    "type": "Value",
+                    "id": "f5105b24-9110-4993-b997-f244e9befcf6",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "81a1ffa4-483f-42df-a0e3-5fc9294bce77",
+                    "path": "<Mouse>/scroll/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Camera Zoom",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "WASD",
-                    "id": "f4803d05-d143-4b20-ae70-6f7ee21d7786",
+                    "id": "62502221-13f6-459d-b79f-4f0a73f36adb",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
@@ -78,7 +97,7 @@
                 },
                 {
                     "name": "up",
-                    "id": "5bc7dd6f-8ed8-4d3f-b607-5d1762809d84",
+                    "id": "48a65a33-c1a5-4e96-aa24-f17795968b83",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
@@ -89,7 +108,7 @@
                 },
                 {
                     "name": "down",
-                    "id": "ca3843d5-8fc3-4f33-9a52-fa57b331f0ad",
+                    "id": "058cb6df-e5a3-4803-8341-7bea68a3ecae",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
@@ -100,7 +119,7 @@
                 },
                 {
                     "name": "left",
-                    "id": "0f0f473c-cfc8-41e5-bfab-46ee7f563a39",
+                    "id": "668957f2-2fc3-431f-ac81-076ce8e5d03e",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
@@ -111,7 +130,7 @@
                 },
                 {
                     "name": "right",
-                    "id": "4f8ec6fa-09ad-4a8d-b673-36ccb1d68b64",
+                    "id": "59a245de-b798-489c-9a47-e034043ee33d",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
@@ -119,17 +138,6 @@
                     "action": "Camera Move",
                     "isComposite": false,
                     "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "7b6a253b-5288-4040-96b1-5e9b7fdebaf2",
-                    "path": "<Mouse>/scroll/y",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Camera Zoom",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 }
             ]
         },
