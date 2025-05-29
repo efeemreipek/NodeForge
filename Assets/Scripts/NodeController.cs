@@ -1,9 +1,11 @@
-using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class NodeController : Singleton<NodeController>
 {
     [SerializeField] private LayerMask nodeLayer;
+    [SerializeField] private float nodeMoveDuration = 0.1f;
+    [SerializeField] private Ease nodeMoveEase = Ease.OutQuad;
 
     private Node selectedNode = null;
 
@@ -22,7 +24,13 @@ public class NodeController : Singleton<NodeController>
 
         if(InputHandler.Instance.MouseLeftClickHold && selectedNode != null)
         {
-            selectedNode.transform.position = SnapToGrid(mouseWorld);
+            Vector3 targetPosition = SnapToGrid(mouseWorld);
+
+            if(Vector3.Distance(selectedNode.transform.position, targetPosition) > 0.1f)
+            {
+                selectedNode.transform.DOMove(targetPosition, nodeMoveDuration)
+                    .SetEase(nodeMoveEase);
+            }
         }
         if(InputHandler.Instance.MouseLeftClickPressed)
         {
