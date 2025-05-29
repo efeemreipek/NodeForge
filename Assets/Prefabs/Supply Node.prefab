@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2372426867026217719}
   - component: {fileID: 5897582643277362997}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Resource Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 2265137437064313913}
   - component: {fileID: 7117925458489412819}
   - component: {fileID: 2224907312714734456}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Node Name Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}

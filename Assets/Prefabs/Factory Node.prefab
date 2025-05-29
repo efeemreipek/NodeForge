@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 297254743086822049}
   - component: {fileID: 4298147968376768265}
   - component: {fileID: 8931380878787493427}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Node Name Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -360,3 +360,4 @@ MonoBehaviour:
   OutputPoints: []
   IsActive: 1
   StorageCapacity: 100
+  Recipe: {fileID: 0}
