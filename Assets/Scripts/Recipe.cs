@@ -5,7 +5,7 @@ using UnityEngine;
 public class Recipe : ScriptableObject
 {
     public string RecipeName;
+    public float ProductionTime = 1f;
     public List<ResourceAmount> Inputs = new List<ResourceAmount>();
     public List<ResourceAmount> Outputs = new List<ResourceAmount>();
-    public float ProductionTime = 1f;
 }

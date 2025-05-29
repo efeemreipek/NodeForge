@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public enum ConnectionType
 {
@@ -6,11 +8,23 @@ public enum ConnectionType
     Output
 }
 
-[System.Serializable]
-public class ConnectionPoint
+public class ConnectionPoint : MonoBehaviour
 {
-    public Resource Resource;
-    public ConnectionType ConnectionType;
-    public float TransferRate = 1f;
-    public List<Connection> Connections = new List<Connection>();
+    [SerializeField] private Resource resource;
+    [SerializeField] private ConnectionType connectionType;
+    [SerializeField] private float transferRate = 1f;
+    [SerializeField] private List<Connection> connections = new List<Connection>();
+
+    private ConnectionPointUI ui;
+
+    private void Awake()
+    {
+        ui = GetComponent<ConnectionPointUI>();
+    }
+
+    public void InitializeConnectionPoint(Resource resource)
+    {
+        this.resource = resource;
+        ui.InitializeUI(this.resource);
+    }
 }
