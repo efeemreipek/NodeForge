@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c31f2456280b6da40a732c55a0703505, type: 3}
-  m_Name: Raw Iron
+  m_Name: Iron Ingot
   m_EditorClassIdentifier: 
-  Name: Raw Iron
-  Icon: {fileID: 2323868980182858109, guid: 80757f5f87ad0154bbfc1a791ea6abbe, type: 3}
-  Color: {r: 0.99371064, g: 0.772662, b: 0.72184634, a: 1}
+  Name: Iron Ingot
+  Icon: {fileID: -4285704637475842466, guid: fe7c6ab8cc1c27a4dac032598ccf61a0, type: 3}
+  Color: {r: 0.726, g: 0.69241464, b: 0.684618, a: 1}
