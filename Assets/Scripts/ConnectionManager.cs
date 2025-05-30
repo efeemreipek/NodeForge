@@ -65,9 +65,9 @@ public class ConnectionManager : Singleton<ConnectionManager>
         if(targetPoint == null || targetPoint == draggingFromPoint) return;
         if(draggingFromPoint.ConnectionType == targetPoint.ConnectionType) return;
 
-        CreateConnection(draggingFromPoint, targetPoint);
+        CreateConnectionLine(draggingFromPoint, targetPoint);
     }
-    private void CreateConnection(ConnectionPoint from, ConnectionPoint to)
+    private void CreateConnectionLine(ConnectionPoint from, ConnectionPoint to)
     {
         GameObject lineObj = new GameObject("ConnectionLine");
         LineRenderer lr = lineObj.AddComponent<LineRenderer>();
@@ -80,7 +80,23 @@ public class ConnectionManager : Singleton<ConnectionManager>
         lr.SetPosition(0, from.transform.position);
         lr.SetPosition(1, to.transform.position);
 
-        Connection connection = new Connection(from.ParentNode, to.ParentNode, from, to, lr);
+        CreateConnection(from, to, lr);
+    }
+
+    private void CreateConnection(ConnectionPoint from, ConnectionPoint to, LineRenderer lr)
+    {
+        Connection connection;
+        if(from.ConnectionType == ConnectionType.Input) // if start connection point is input change node order
+        {
+            // Input to output
+            connection = new Connection(to.ParentNode, from.ParentNode, from, to, lr);
+        }
+        else
+        {
+            // Output to input
+            connection = new Connection(from.ParentNode, to.ParentNode, to, from, lr);
+        }
+
         from.AddConnection(connection);
         to.AddConnection(connection);
 
@@ -88,6 +104,7 @@ public class ConnectionManager : Singleton<ConnectionManager>
 
         connection.UpdateLine();
     }
+
     private void DrawConnectionPreview(Vector3 from, Vector3 to)
     {
         connectionLinePreview.enabled = true;
