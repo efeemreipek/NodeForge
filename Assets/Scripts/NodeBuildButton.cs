@@ -10,8 +10,12 @@ public class NodeBuildButton : MonoBehaviour
         ui = GetComponent<NodeBuildButtonUI>();
     }
 
-    public void InitializeButton(string buttonName)
+    public void InitializeButton(string buttonName, GameObject prefab)
     {
-        ui.InitializeUI(buttonName, () => Debug.Log(buttonName)) ;
+        ui.InitializeUI(buttonName, () => BuildNode(prefab)) ;
+    }
+    public void BuildNode(GameObject prefab)
+    {
+        GameObject nodeGO = Instantiate(prefab);
     }
 }

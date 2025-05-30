@@ -12,7 +12,7 @@ public class NodeBuildList : MonoBehaviour
         {
             GameObject buttonGO = Instantiate(nodeBuildButtonPrefab, scrollViewContentTransform);
             NodeBuildButton nodeBuildButton = buttonGO.GetComponent<NodeBuildButton>();
-            nodeBuildButton.InitializeButton(nodeDataList.Nodes[i].Name);
+            nodeBuildButton.InitializeButton(nodeDataList.Nodes[i].Name, nodeDataList.Nodes[i].Prefab);
         }
     }
 }
