@@ -1,10 +1,8 @@
-using UnityEngine;
-
 public class SupplyNode : Node
 {
     public Resource Resource;
 
-    private void Awake()
+    private void Start()
     {
         foreach(ConnectionPoint outputPoint in OutputPoints)
         {

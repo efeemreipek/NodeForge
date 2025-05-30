@@ -1,10 +1,8 @@
-using UnityEngine;
-
 public class FactoryNode : Node
 {
     public Recipe Recipe;
 
-    private void Awake()
+    private void Start()
     {
         for(int i = 0; i < InputPoints.Count; i++)
         {
