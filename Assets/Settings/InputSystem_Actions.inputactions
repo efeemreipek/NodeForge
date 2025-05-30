@@ -70,6 +70,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Camera Drag",
+                    "type": "Button",
+                    "id": "f5d1673e-b30d-4280-bc00-6324852557bb",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -138,6 +147,17 @@
                     "action": "Camera Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "10ac4ae1-516b-4f06-b065-d0769c701e46",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Camera Drag",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },

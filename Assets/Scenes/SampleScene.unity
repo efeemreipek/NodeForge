@@ -21450,6 +21450,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
+  dragSpeed: 0.0025
   zoomSpeed: 50
   minZoom: 2
   maxZoom: 20

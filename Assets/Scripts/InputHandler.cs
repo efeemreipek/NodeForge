@@ -13,11 +13,13 @@ public class InputHandler : Singleton<InputHandler>
     private InputAction actionMouseLeftClick;
     private InputAction actionCameraMove;
     private InputAction actionCameraZoom;
+    private InputAction actionCameraDrag;
 
     private Vector2 mousePosition;
     private bool mouseLeftClickPressed, mouseLeftClickHold, mouseLeftClickReleased;
     private Vector2 cameraMove;
     private float cameraZoom;
+    private bool cameraDragPressed, cameraDragHold, cameraDragReleased;
 
     public Vector2 MousePosition => mousePosition;
     public bool MouseLeftClickPressed => mouseLeftClickPressed;
@@ -25,6 +27,9 @@ public class InputHandler : Singleton<InputHandler>
     public bool MouseLeftClickReleased => mouseLeftClickReleased;
     public Vector2 CameraMove => cameraMove;
     public float CameraZoom => cameraZoom;
+    public bool CameraDragPressed => cameraDragPressed;
+    public bool CameraDragHold => cameraDragHold;
+    public bool CameraDragReleased => cameraDragReleased;
 
     private void OnEnable()
     {
@@ -47,13 +52,24 @@ public class InputHandler : Singleton<InputHandler>
     }
     private void Update()
     {
-        if(IsMouseOverUI()) actionCameraZoom.Disable();
-        else actionCameraZoom.Enable();
+        if(IsMouseOverUI())
+        {
+            actionCameraZoom.Disable();
+            actionCameraDrag.Disable();
+        }
+        else
+        {
+            actionCameraZoom.Enable();
+            actionCameraDrag.Enable();
+        }
     }
     private void LateUpdate()
     {
         mouseLeftClickPressed = false;
         mouseLeftClickReleased = false;
+
+        cameraDragPressed = false;
+        cameraDragReleased = false;
     }
 
     private bool IsMouseOverUI() => EventSystem.current.IsPointerOverGameObject();
@@ -69,6 +85,7 @@ public class InputHandler : Singleton<InputHandler>
 
         actionCameraMove = actionMapCamera.FindAction("Camera Move");
         actionCameraZoom = actionMapCamera.FindAction("Camera Zoom");
+        actionCameraDrag = actionMapCamera.FindAction("Camera Drag");
     }
     private void SubscribeToInputEvents()
     {
@@ -83,6 +100,9 @@ public class InputHandler : Singleton<InputHandler>
 
         actionCameraZoom.performed += CameraZoom_Performed;
         actionCameraZoom.canceled += CameraZoom_Canceled;
+
+        actionCameraDrag.performed += CameraDrag_Performed;
+        actionCameraDrag.canceled += CameraDrag_Canceled;
     }
     private void UnsubscribeFromInputEvents()
     {
@@ -97,6 +117,9 @@ public class InputHandler : Singleton<InputHandler>
 
         actionCameraZoom.performed -= CameraZoom_Performed;
         actionCameraZoom.canceled -= CameraZoom_Canceled;
+
+        actionCameraDrag.performed -= CameraDrag_Performed;
+        actionCameraDrag.canceled -= CameraDrag_Canceled;
     }
 
     private void MousePosition_Performed(InputAction.CallbackContext obj) => mousePosition = obj.ReadValue<Vector2>();
@@ -115,4 +138,14 @@ public class InputHandler : Singleton<InputHandler>
     private void CameraMove_Canceled(InputAction.CallbackContext obj) => cameraMove = Vector2.zero;
     private void CameraZoom_Performed(InputAction.CallbackContext obj) => cameraZoom = obj.ReadValue<float>();
     private void CameraZoom_Canceled(InputAction.CallbackContext obj) => cameraZoom = 0f;
+    private void CameraDrag_Performed(InputAction.CallbackContext obj)
+    {
+        cameraDragPressed = true;
+        cameraDragHold = true;
+    }
+    private void CameraDrag_Canceled(InputAction.CallbackContext obj)
+    {
+        cameraDragHold = false;
+        cameraDragReleased = true;
+    }
 }
