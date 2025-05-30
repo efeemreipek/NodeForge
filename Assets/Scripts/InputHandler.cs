@@ -54,13 +54,15 @@ public class InputHandler : Singleton<InputHandler>
     {
         if(IsMouseOverUI())
         {
-            actionCameraZoom.Disable();
-            actionCameraDrag.Disable();
+            if(actionMouseLeftClick.enabled) actionMouseLeftClick.Disable();
+            if(actionCameraZoom.enabled) actionCameraZoom.Disable();
+            if(actionCameraDrag.enabled) actionCameraDrag.Disable();
         }
         else
         {
-            actionCameraZoom.Enable();
-            actionCameraDrag.Enable();
+            if(!actionMouseLeftClick.enabled) actionMouseLeftClick.Enable();
+            if(!actionCameraZoom.enabled) actionCameraZoom.Enable();
+            if(!actionCameraDrag.enabled) actionCameraDrag.Enable();
         }
     }
     private void LateUpdate()
