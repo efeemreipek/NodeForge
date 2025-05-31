@@ -15,7 +15,7 @@ public class ResourceUI : MonoBehaviour
     }
     private void OnDisable()
     {
-        ResourceManager.Instance.OnResourceAmountChanged -= UpdateUI;
+        if(ResourceManager.HasInstance) ResourceManager.Instance.OnResourceAmountChanged -= UpdateUI;
     }
 
     public void InitializeUI(Resource resource, Sprite icon, float amount)
