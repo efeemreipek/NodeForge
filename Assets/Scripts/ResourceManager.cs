@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
 
@@ -5,6 +6,8 @@ public class ResourceManager : Singleton<ResourceManager>
 {
     [SerializedDictionary("Resource", "Amount")]
     public SerializedDictionary<Resource, float> resources = new SerializedDictionary<Resource, float>();
+
+    public event Action<Resource, float> OnResourceAmountChanged;
 
     public void AddResource(Resource resource, float amount)
     {
@@ -16,6 +19,8 @@ public class ResourceManager : Singleton<ResourceManager>
         {
             resources[resource] = amount;
         }
+
+        OnResourceAmountChanged.Invoke(resource, GetResourceAmount(resource));
     }
     public bool HasEnoughResources(List<ResourceAmount> required)
     {
