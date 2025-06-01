@@ -11,12 +11,14 @@ public class InputHandler : Singleton<InputHandler>
 
     private InputAction actionMousePosition;
     private InputAction actionMouseLeftClick;
+    private InputAction actionMouseRightClick;
     private InputAction actionCameraMove;
     private InputAction actionCameraZoom;
     private InputAction actionCameraDrag;
 
     private Vector2 mousePosition;
     private bool mouseLeftClickPressed, mouseLeftClickHold, mouseLeftClickReleased;
+    private bool mouseRightClickPressed, mouseRightClickHold, mouseRightClickReleased;
     private Vector2 cameraMove;
     private float cameraZoom;
     private bool cameraDragPressed, cameraDragHold, cameraDragReleased;
@@ -25,6 +27,9 @@ public class InputHandler : Singleton<InputHandler>
     public bool MouseLeftClickPressed => mouseLeftClickPressed;
     public bool MouseLeftClickHold => mouseLeftClickHold;
     public bool MouseLeftClickReleased => mouseLeftClickReleased;
+    public bool MouseRightClickPressed => mouseRightClickPressed;
+    public bool MouseRightClickHold => mouseRightClickHold;
+    public bool MouseRightClickedReleased => mouseRightClickReleased;
     public Vector2 CameraMove => cameraMove;
     public float CameraZoom => cameraZoom;
     public bool CameraDragPressed => cameraDragPressed;
@@ -55,12 +60,14 @@ public class InputHandler : Singleton<InputHandler>
         if(IsMouseOverUI())
         {
             if(actionMouseLeftClick.enabled) actionMouseLeftClick.Disable();
+            if(actionMouseRightClick.enabled) actionMouseRightClick.Disable();
             if(actionCameraZoom.enabled) actionCameraZoom.Disable();
             if(actionCameraDrag.enabled) actionCameraDrag.Disable();
         }
         else
         {
             if(!actionMouseLeftClick.enabled) actionMouseLeftClick.Enable();
+            if(!actionMouseRightClick.enabled) actionMouseRightClick.Enable();
             if(!actionCameraZoom.enabled) actionCameraZoom.Enable();
             if(!actionCameraDrag.enabled) actionCameraDrag.Enable();
         }
@@ -69,6 +76,9 @@ public class InputHandler : Singleton<InputHandler>
     {
         mouseLeftClickPressed = false;
         mouseLeftClickReleased = false;
+
+        mouseRightClickPressed = false;
+        mouseRightClickReleased = false;
 
         cameraDragPressed = false;
         cameraDragReleased = false;
@@ -84,6 +94,7 @@ public class InputHandler : Singleton<InputHandler>
     {
         actionMousePosition = actionMapGame.FindAction("Mouse Position");
         actionMouseLeftClick = actionMapGame.FindAction("Mouse Left Click");
+        actionMouseRightClick = actionMapGame.FindAction("Mouse Right Click");
 
         actionCameraMove = actionMapCamera.FindAction("Camera Move");
         actionCameraZoom = actionMapCamera.FindAction("Camera Zoom");
@@ -96,6 +107,9 @@ public class InputHandler : Singleton<InputHandler>
 
         actionMouseLeftClick.performed += MouseLeftClick_Performed;
         actionMouseLeftClick.canceled += MouseLeftClick_Canceled;
+
+        actionMouseRightClick.performed += MouseRightClick_Performed;
+        actionMouseRightClick.canceled += MouseRightClick_Canceled;
 
         actionCameraMove.performed += CameraMove_Performed;
         actionCameraMove.canceled += CameraMove_Canceled;
@@ -113,6 +127,9 @@ public class InputHandler : Singleton<InputHandler>
 
         actionMouseLeftClick.performed -= MouseLeftClick_Performed;
         actionMouseLeftClick.canceled -= MouseLeftClick_Canceled;
+
+        actionMouseRightClick.performed -= MouseRightClick_Performed;
+        actionMouseRightClick.canceled -= MouseRightClick_Canceled;
 
         actionCameraMove.performed -= CameraMove_Performed;
         actionCameraMove.canceled -= CameraMove_Canceled;
@@ -135,6 +152,16 @@ public class InputHandler : Singleton<InputHandler>
     {
         mouseLeftClickHold = false;
         mouseLeftClickReleased = true;
+    }
+    private void MouseRightClick_Performed(InputAction.CallbackContext obj)
+    {
+        mouseRightClickPressed = true;
+        mouseRightClickHold = true;
+    }
+    private void MouseRightClick_Canceled(InputAction.CallbackContext obj)
+    {
+        mouseRightClickHold = false;
+        mouseRightClickReleased = true;
     }
     private void CameraMove_Performed(InputAction.CallbackContext obj) => cameraMove = obj.ReadValue<Vector2>();
     private void CameraMove_Canceled(InputAction.CallbackContext obj) => cameraMove = Vector2.zero;

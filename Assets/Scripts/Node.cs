@@ -11,4 +11,16 @@ public abstract class Node : MonoBehaviour
 
     protected Dictionary<Resource, float> inputStorage = new Dictionary<Resource, float>();
     protected Dictionary<Resource, float> outputStorage = new Dictionary<Resource, float>();
+
+    private void OnDestroy()
+    {
+        foreach(var connectionPoint in InputPoints)
+        {
+            connectionPoint.DeleteConnections();
+        }
+        foreach(var connectionPoint in OutputPoints)
+        {
+            connectionPoint.DeleteConnections();
+        }
+    }
 }

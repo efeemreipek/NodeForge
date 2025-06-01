@@ -40,4 +40,25 @@ public class ConnectionPoint : MonoBehaviour
     {
         connections.Add(connection);
     }
+    public void DeleteConnections()
+    {
+        for(int i = connections.Count - 1; i >= 0; i--)
+        {
+            if(connections[i] != null)
+            {
+                Connection otherConnection = connections[i];
+                if(otherConnection.InputPoint != this)
+                {
+                    otherConnection.InputPoint.connections.Remove(otherConnection);
+                }
+                else if(otherConnection.OutputPoint != this)
+                {
+                    otherConnection.OutputPoint.connections.Remove(otherConnection);
+                }
+
+                Destroy(otherConnection.ConnectionLine.gameObject);
+                connections.RemoveAt(i);
+            }
+        }
+    }
 }

@@ -36,6 +36,10 @@ public class NodeController : Singleton<NodeController>
         {
             TrySelectNode(mouseWorld);
         }
+        if(InputHandler.Instance.MouseRightClickPressed)
+        {
+            TryDeleteNode(mouseWorld);
+        }
         if(InputHandler.Instance.MouseLeftClickReleased && selectedNode != null)
         {
             selectedNode = null;
@@ -48,6 +52,16 @@ public class NodeController : Singleton<NodeController>
         if(hit != null)
         {
             selectedNode = hit.GetComponent<Node>();
+        }
+    }
+    private void TryDeleteNode(Vector3 mouseWorld)
+    {
+        Collider2D hit = Physics2D.OverlapPoint(mouseWorld, nodeLayer);
+        if(hit != null)
+        {
+            selectedNode = hit.GetComponent<Node>();
+            Destroy(selectedNode.gameObject);
+            selectedNode = null;
         }
     }
     private Vector3 SnapToGrid(Vector3 position)

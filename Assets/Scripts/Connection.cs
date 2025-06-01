@@ -8,8 +8,8 @@ public class Connection
     public ConnectionPoint InputPoint;
     public ConnectionPoint OutputPoint;
     public float TransferBuffer = 0f;
+    public LineRenderer ConnectionLine;
 
-    private LineRenderer connectionLine;
 
     public Connection(Node fromNode, Node toNode, ConnectionPoint inputPoint, ConnectionPoint outputPoint, LineRenderer connectionLine)
     {
@@ -17,14 +17,14 @@ public class Connection
         ToNode = toNode;
         InputPoint = inputPoint;
         OutputPoint = outputPoint;
-        this.connectionLine = connectionLine;
+        ConnectionLine = connectionLine;
     }
 
     public void UpdateLine()
     {
-        if(connectionLine == null || InputPoint == null || OutputPoint == null) return;
+        if(ConnectionLine == null || InputPoint == null || OutputPoint == null) return;
 
-        connectionLine.SetPosition(0, OutputPoint.transform.position);
-        connectionLine.SetPosition(1, InputPoint.transform.position);
+        ConnectionLine.SetPosition(0, OutputPoint.transform.position);
+        ConnectionLine.SetPosition(1, InputPoint.transform.position);
     }
 }
