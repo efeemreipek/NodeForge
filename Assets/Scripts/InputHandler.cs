@@ -12,6 +12,7 @@ public class InputHandler : Singleton<InputHandler>
     private InputAction actionMousePosition;
     private InputAction actionMouseLeftClick;
     private InputAction actionMouseRightClick;
+    private InputAction actionShift;
     private InputAction actionCameraMove;
     private InputAction actionCameraZoom;
     private InputAction actionCameraDrag;
@@ -19,6 +20,7 @@ public class InputHandler : Singleton<InputHandler>
     private Vector2 mousePosition;
     private bool mouseLeftClickPressed, mouseLeftClickHold, mouseLeftClickReleased;
     private bool mouseRightClickPressed, mouseRightClickHold, mouseRightClickReleased;
+    private bool shiftPressed, shiftHold, shiftReleased;
     private Vector2 cameraMove;
     private float cameraZoom;
     private bool cameraDragPressed, cameraDragHold, cameraDragReleased;
@@ -30,6 +32,9 @@ public class InputHandler : Singleton<InputHandler>
     public bool MouseRightClickPressed => mouseRightClickPressed;
     public bool MouseRightClickHold => mouseRightClickHold;
     public bool MouseRightClickedReleased => mouseRightClickReleased;
+    public bool ShiftPressed => shiftPressed;
+    public bool ShiftHold => shiftHold;
+    public bool ShiftReleased => shiftReleased;
     public Vector2 CameraMove => cameraMove;
     public float CameraZoom => cameraZoom;
     public bool CameraDragPressed => cameraDragPressed;
@@ -80,6 +85,9 @@ public class InputHandler : Singleton<InputHandler>
         mouseRightClickPressed = false;
         mouseRightClickReleased = false;
 
+        shiftPressed = false;
+        shiftReleased = false;
+
         cameraDragPressed = false;
         cameraDragReleased = false;
     }
@@ -95,6 +103,7 @@ public class InputHandler : Singleton<InputHandler>
         actionMousePosition = actionMapGame.FindAction("Mouse Position");
         actionMouseLeftClick = actionMapGame.FindAction("Mouse Left Click");
         actionMouseRightClick = actionMapGame.FindAction("Mouse Right Click");
+        actionShift = actionMapGame.FindAction("Shift");
 
         actionCameraMove = actionMapCamera.FindAction("Camera Move");
         actionCameraZoom = actionMapCamera.FindAction("Camera Zoom");
@@ -110,6 +119,9 @@ public class InputHandler : Singleton<InputHandler>
 
         actionMouseRightClick.performed += MouseRightClick_Performed;
         actionMouseRightClick.canceled += MouseRightClick_Canceled;
+
+        actionShift.performed += Shift_Performed;
+        actionShift.canceled += Shift_Canceled;
 
         actionCameraMove.performed += CameraMove_Performed;
         actionCameraMove.canceled += CameraMove_Canceled;
@@ -130,6 +142,9 @@ public class InputHandler : Singleton<InputHandler>
 
         actionMouseRightClick.performed -= MouseRightClick_Performed;
         actionMouseRightClick.canceled -= MouseRightClick_Canceled;
+
+        actionShift.performed -= Shift_Performed;
+        actionShift.canceled -= Shift_Canceled;
 
         actionCameraMove.performed -= CameraMove_Performed;
         actionCameraMove.canceled -= CameraMove_Canceled;
@@ -162,6 +177,16 @@ public class InputHandler : Singleton<InputHandler>
     {
         mouseRightClickHold = false;
         mouseRightClickReleased = true;
+    }
+    private void Shift_Performed(InputAction.CallbackContext obj)
+    {
+        shiftPressed = true;
+        shiftHold = true;
+    }
+    private void Shift_Canceled(InputAction.CallbackContext obj)
+    {
+        shiftHold = false;
+        shiftReleased = true;
     }
     private void CameraMove_Performed(InputAction.CallbackContext obj) => cameraMove = obj.ReadValue<Vector2>();
     private void CameraMove_Canceled(InputAction.CallbackContext obj) => cameraMove = Vector2.zero;
