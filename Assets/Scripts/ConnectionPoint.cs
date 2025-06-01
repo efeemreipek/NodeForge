@@ -32,6 +32,10 @@ public class ConnectionPoint : MonoBehaviour
         this.resource = resource;
         ui.InitializeUI(this.resource);
     }
+    public void InitializeConnectionPoint()
+    {
+        ui.InitializeUI();
+    }
     public void AddConnection(Connection connection)
     {
         connections.Add(connection);

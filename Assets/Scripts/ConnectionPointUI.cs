@@ -9,4 +9,8 @@ public class ConnectionPointUI : MonoBehaviour
     {
         nameText.text = resource.Name;
     }
+    public void InitializeUI()
+    {
+        nameText.text = "ANY";
+    }
 }
