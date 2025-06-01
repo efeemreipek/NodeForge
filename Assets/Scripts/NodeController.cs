@@ -7,11 +7,15 @@ public class NodeController : Singleton<NodeController>
     [SerializeField] private LayerMask nodeLayer;
     [SerializeField] private float nodeMoveDuration = 0.1f;
     [SerializeField] private Ease nodeMoveEase = Ease.OutQuad;
+    [SerializeField] private Canvas selectionCanvas;
+    [SerializeField] private RectTransform selectionBoxRect;
 
     private List<Node> selectedNodes = new List<Node>();
     private Vector3 lastMousePosition;
     private Dictionary<Node, Vector3> nodeOffsets = new Dictionary<Node, Vector3>();
     private bool isDragging;
+    private bool isSelecting;
+    private Vector2 selectionStartPos;
     private Camera cam;
 
     protected override void Awake()
@@ -25,7 +29,31 @@ public class NodeController : Singleton<NodeController>
         Vector3 mouseWorld = cam.ScreenToWorldPoint(InputHandler.Instance.MousePosition);
         mouseWorld.z = 0f;
 
-        if(InputHandler.Instance.MouseLeftClickHold && selectedNodes.Count > 0)
+        if(InputHandler.Instance.MouseLeftClickPressed)
+        {
+            Collider2D hit = Physics2D.OverlapPoint(mouseWorld, nodeLayer);
+            if(hit == null)
+            {
+                StartSelectionBox();
+            }
+            else
+            {
+                if(InputHandler.Instance.ShiftHold)
+                {
+                    TryToggleNodeSelection(mouseWorld);
+                }
+                else
+                {
+                    TrySelectSingleNode(mouseWorld);
+                }
+            }
+        }
+        if(isSelecting)
+        {
+            UpdateSelectionBox();
+        }
+
+        if(InputHandler.Instance.MouseLeftClickHold && selectedNodes.Count > 0 && !isSelecting)
         {
             if(!isDragging)
             {
@@ -34,25 +62,18 @@ public class NodeController : Singleton<NodeController>
             }
             MoveSelectedNodes(mouseWorld);
         }
-        if(InputHandler.Instance.MouseLeftClickPressed)
+        if(InputHandler.Instance.MouseLeftClickReleased)
         {
-            if(InputHandler.Instance.ShiftHold)
+            if(isSelecting)
             {
-                TryToggleNodeSelection(mouseWorld);
+                EndSelectionBox();
             }
-            else
-            {
-                TrySelectSingleNode(mouseWorld);
-            }
+            isDragging = false;
+            nodeOffsets.Clear();
         }
         if(InputHandler.Instance.MouseRightClickPressed)
         {
             TryDeleteNodes(mouseWorld);
-        }
-        if(InputHandler.Instance.MouseLeftClickReleased)
-        {
-            isDragging = false;
-            nodeOffsets.Clear();
         }
     }
 
@@ -151,6 +172,105 @@ public class NodeController : Singleton<NodeController>
             if(node != null)
             {
                 nodeOffsets[node] = node.transform.position - mousePosition;
+            }
+        }
+    }
+    private void StartSelectionBox()
+    {
+        if(selectionBoxRect == null) return;
+
+        isSelecting = true;
+        selectionStartPos = InputHandler.Instance.MousePosition;
+        selectionBoxRect.gameObject.SetActive(true);
+
+        if(!InputHandler.Instance.ShiftHold)
+        {
+            ClearSelection();
+        }
+
+        Vector2 canvasPos;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            selectionCanvas.transform as RectTransform,
+            selectionStartPos,
+            selectionCanvas.worldCamera,
+            out canvasPos
+            );
+
+        selectionBoxRect.anchoredPosition = canvasPos;
+        selectionBoxRect.sizeDelta = Vector2.zero;
+    }
+    private void UpdateSelectionBox()
+    {
+        if(selectionBoxRect ==  null && !isSelecting) return;
+
+        Vector2 currentMousePos = InputHandler.Instance.MousePosition;
+
+        Vector2 startCanvasPos, currentCanvasPos;
+
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            selectionCanvas.transform as RectTransform,
+            selectionStartPos,
+            selectionCanvas.worldCamera,
+            out startCanvasPos
+        );
+
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            selectionCanvas.transform as RectTransform,
+            currentMousePos,
+            selectionCanvas.worldCamera,
+            out currentCanvasPos
+        );
+
+        Vector2 lowerLeft = new Vector2(Mathf.Min(startCanvasPos.x, currentCanvasPos.x), Mathf.Min(startCanvasPos.y, currentCanvasPos.y));
+        Vector2 upperRight = new Vector2(Mathf.Max(startCanvasPos.x, currentCanvasPos.x), Mathf.Max(startCanvasPos.y, currentCanvasPos.y));
+
+        selectionBoxRect.anchoredPosition = lowerLeft;
+        selectionBoxRect.sizeDelta = upperRight - lowerLeft;
+    }
+    private void EndSelectionBox()
+    {
+        if(selectionBoxRect == null && !isSelecting) return;
+
+        isSelecting = false;
+        selectionBoxRect.gameObject.SetActive(false);
+
+        Vector2 startScreenPos = selectionStartPos;
+        Vector2 currentScreenPos = InputHandler.Instance.MousePosition;
+
+        Vector2 lowerLeftScreen = new Vector2(Mathf.Min(startScreenPos.x, currentScreenPos.x), Mathf.Min(startScreenPos.y, currentScreenPos.y));
+        Vector2 upperRightScreen = new Vector2(Mathf.Max(startScreenPos.x, currentScreenPos.x), Mathf.Max(startScreenPos.y, currentScreenPos.y));
+
+        Vector3 worldLowerLeft = cam.ScreenToWorldPoint(new Vector3(lowerLeftScreen.x, lowerLeftScreen.y, cam.nearClipPlane));
+        Vector3 worldUpperRight = cam.ScreenToWorldPoint(new Vector3(upperRightScreen.x, upperRightScreen.y, cam.nearClipPlane));
+
+        worldLowerLeft.z = 0f;
+        worldUpperRight.z = 0f;
+
+        Collider2D[] nodesInArea = Physics2D.OverlapAreaAll(new Vector2(worldLowerLeft.x, worldLowerLeft.y), new Vector2(worldUpperRight.x, worldUpperRight.y), nodeLayer);
+
+        List<Node> newSelectedNodes = new List<Node>();
+
+        foreach(Collider2D nodeCollider in nodesInArea)
+        {
+            Node node = nodeCollider.GetComponent<Node>();
+            if(node != null)
+            {
+                newSelectedNodes.Add(node);
+            }
+        }
+
+        foreach(Node node in newSelectedNodes)
+        {
+            if(node != null)
+            {
+                if(selectedNodes.Contains(node))
+                {
+                    selectedNodes.Remove(node);
+                }
+                else
+                {
+                    selectedNodes.Add(node);
+                }
             }
         }
     }
