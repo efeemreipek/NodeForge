@@ -56,7 +56,11 @@ public class ConnectionPoint : MonoBehaviour
                     otherConnection.OutputPoint.connections.Remove(otherConnection);
                 }
 
-                Destroy(otherConnection.ConnectionLine.gameObject);
+                if(otherConnection.ConnectionLine != null && otherConnection.ConnectionLine.gameObject != null)
+                {
+                    Destroy(otherConnection.ConnectionLine.gameObject);
+                }
+
                 connections.RemoveAt(i);
             }
         }
