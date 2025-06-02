@@ -32,7 +32,8 @@ public class NodeController : Singleton<NodeController>
         if(InputHandler.Instance.MouseLeftClickPressed)
         {
             Collider2D hit = Physics2D.OverlapPoint(mouseWorld, nodeLayer);
-            if(hit == null)
+            Collider2D connectionHit = Physics2D.OverlapPoint(mouseWorld, LayerMask.GetMask("Connection Point"));
+            if(hit == null && connectionHit == null)
             {
                 StartSelectionBox();
             }
