@@ -24,7 +24,19 @@ public class Connection
     {
         if(ConnectionLine == null || InputPoint == null || OutputPoint == null) return;
 
-        ConnectionLine.SetPosition(0, OutputPoint.transform.position);
-        ConnectionLine.SetPosition(1, InputPoint.transform.position);
+        Vector3 from = OutputPoint.transform.position;
+        Vector3 to = InputPoint.transform.position;
+
+        ConnectionLine.positionCount = 4;
+
+        Vector3 point0 = from;
+        Vector3 point3 = to;
+        Vector3 point1 = new Vector3(point0.x + 0.5f, point0.y, 0f);
+        Vector3 point2 = new Vector3(point3.x - 0.5f, point3.y, 0f);
+
+        ConnectionLine.SetPosition(0, point0);
+        ConnectionLine.SetPosition(1, point1);
+        ConnectionLine.SetPosition(2, point2);
+        ConnectionLine.SetPosition(3, point3);
     }
 }

@@ -71,14 +71,16 @@ public class ConnectionManager : Singleton<ConnectionManager>
     {
         GameObject lineObj = new GameObject("ConnectionLine");
         LineRenderer lr = lineObj.AddComponent<LineRenderer>();
-        lr.positionCount = 2;
+        lr.positionCount = 4;
         lr.startWidth = 0.05f;
         lr.endWidth = 0.05f;
         lr.material = connectionLineMaterial;
         lr.useWorldSpace = true;
         lr.sortingOrder = -1;
         lr.SetPosition(0, from.transform.position);
-        lr.SetPosition(1, to.transform.position);
+        lr.SetPosition(1, from.transform.position);
+        lr.SetPosition(2, to.transform.position);
+        lr.SetPosition(3, to.transform.position);
 
         CreateConnection(from, to, lr);
     }
@@ -108,8 +110,16 @@ public class ConnectionManager : Singleton<ConnectionManager>
     private void DrawConnectionPreview(Vector3 from, Vector3 to)
     {
         connectionLinePreview.enabled = true;
-        connectionLinePreview.positionCount = 2;
-        connectionLinePreview.SetPosition(0, from);
-        connectionLinePreview.SetPosition(1, to);
+        connectionLinePreview.positionCount = 4;
+
+        Vector3 point0 = from;
+        Vector3 point3 = to;
+        Vector3 point1 = new Vector3(point0.x + 0.5f, point0.y, 0f);
+        Vector3 point2 = new Vector3(point3.x - 0.5f, point3.y, 0f);
+
+        connectionLinePreview.SetPosition(0, point0);
+        connectionLinePreview.SetPosition(1, point1);
+        connectionLinePreview.SetPosition(2, point2);
+        connectionLinePreview.SetPosition(3, point3);
     }
 }
