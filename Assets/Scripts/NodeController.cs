@@ -90,12 +90,13 @@ public class NodeController : Singleton<NodeController>
                 if(selectedNodes.Contains(node)) return;
 
                 ClearSelection();
-                selectedNodes.Add(node);
+                AddNodeToSelected(node);
             }
         }
         else
         {
-            ClearSelection(); selectedNodes.Clear();
+            ClearSelection();
+            ClearNodesFromSelected();
         }
     }
     private void TryToggleNodeSelection(Vector3 mouseWorld)
@@ -108,11 +109,11 @@ public class NodeController : Singleton<NodeController>
             {
                 if(selectedNodes.Contains(node))
                 {
-                    selectedNodes.Remove(node);
+                    RemoveNodeFromSelected(node);
                 }
                 else
                 {
-                    selectedNodes.Add(node);
+                    AddNodeToSelected(node);
                 }
 
                 if(selectedNodes.Count > 0)
@@ -134,7 +135,7 @@ public class NodeController : Singleton<NodeController>
                 }
             }
 
-            selectedNodes.Clear();
+            ClearNodesFromSelected();
             nodeOffsets.Clear();
         }
         else
@@ -266,18 +267,36 @@ public class NodeController : Singleton<NodeController>
             {
                 if(selectedNodes.Contains(node))
                 {
-                    selectedNodes.Remove(node);
+                    RemoveNodeFromSelected(node);
                 }
                 else
                 {
-                    selectedNodes.Add(node);
+                    AddNodeToSelected(node);
                 }
             }
         }
     }
+    private void AddNodeToSelected(Node node)
+    {
+        selectedNodes.Add(node);
+        node.SelectedVisualGO.SetActive(true);
+    }
+    private void RemoveNodeFromSelected(Node node)
+    {
+        selectedNodes.Remove(node);
+        node.SelectedVisualGO.SetActive(false);
+    }
+    private void ClearNodesFromSelected()
+    {
+        foreach(Node node in selectedNodes)
+        {
+            node.SelectedVisualGO.SetActive(false);
+        }
+        selectedNodes.Clear();
+    }
     private void ClearSelection()
     {
-        selectedNodes.Clear();
+        ClearNodesFromSelected();
         nodeOffsets.Clear();
         isDragging = false; 
     }

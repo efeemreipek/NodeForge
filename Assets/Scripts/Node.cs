@@ -3,6 +3,8 @@ using UnityEngine;
 
 public abstract class Node : MonoBehaviour
 {
+    public GameObject SelectedVisualGO;
+
     public List<ConnectionPoint> InputPoints = new List<ConnectionPoint>();
     public List<ConnectionPoint> OutputPoints = new List<ConnectionPoint>();
 
