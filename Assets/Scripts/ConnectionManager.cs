@@ -4,6 +4,7 @@ using UnityEngine;
 public class ConnectionManager : Singleton<ConnectionManager>
 {
     [SerializeField] private LayerMask connectionPointLayer;
+    [SerializeField] private LayerMask connectionLayer;
     [SerializeField] private LineRenderer connectionLinePreview;
     [SerializeField] private Material connectionLineMaterial;
 
@@ -38,6 +39,10 @@ public class ConnectionManager : Singleton<ConnectionManager>
             draggingFromPoint = null;
             connectionLinePreview.enabled = false;
         }
+        if(InputHandler.Instance.MouseRightClickPressed)
+        {
+            DeleteConnection(mouseWorld);
+        }
 
         foreach(var connection in activeConnections)
         {
@@ -70,6 +75,8 @@ public class ConnectionManager : Singleton<ConnectionManager>
     private void CreateConnectionLine(ConnectionPoint from, ConnectionPoint to)
     {
         GameObject lineObj = new GameObject("ConnectionLine");
+        lineObj.layer = Mathf.RoundToInt(Mathf.Log(connectionLayer.value, 2));
+        ConnectionMono cm = lineObj.AddComponent<ConnectionMono>();
         LineRenderer lr = lineObj.AddComponent<LineRenderer>();
         lr.positionCount = 4;
         lr.startWidth = 0.05f;
@@ -77,15 +84,30 @@ public class ConnectionManager : Singleton<ConnectionManager>
         lr.material = connectionLineMaterial;
         lr.useWorldSpace = true;
         lr.sortingOrder = -1;
-        lr.SetPosition(0, from.transform.position);
-        lr.SetPosition(1, from.transform.position);
-        lr.SetPosition(2, to.transform.position);
-        lr.SetPosition(3, to.transform.position);
 
-        CreateConnection(from, to, lr);
+        Vector3 point0 = from.transform.position;
+        Vector3 point3 = to.transform.position;
+        Vector3 point1 = new Vector3(point0.x + 0.5f, point0.y, 0f);
+        Vector3 point2 = new Vector3(point3.x - 0.5f, point3.y, 0f);
+
+        lr.SetPosition(0, point0);
+        lr.SetPosition(1, point1);
+        lr.SetPosition(2, point2);
+        lr.SetPosition(3, point3);
+
+        EdgeCollider2D edge = lineObj.AddComponent<EdgeCollider2D>();
+        Vector2[] points = new Vector2[4];
+        points[0] = point0;
+        points[1] = point1;
+        points[2] = point2;
+        points[3] = point3;
+
+        edge.points = points;
+        edge.edgeRadius = 0.05f;
+
+        CreateConnection(from, to, lr, cm);
     }
-
-    private void CreateConnection(ConnectionPoint from, ConnectionPoint to, LineRenderer lr)
+    private void CreateConnection(ConnectionPoint from, ConnectionPoint to, LineRenderer lr, ConnectionMono cm)
     {
         Connection connection;
         if(from.ConnectionType == ConnectionType.Input) // if start connection point is input change node order
@@ -103,10 +125,25 @@ public class ConnectionManager : Singleton<ConnectionManager>
         to.AddConnection(connection);
 
         activeConnections.Add(connection);
+        cm.Connection = connection;
 
         connection.UpdateLine();
     }
+    private void DeleteConnection(Vector3 mouseWorld)
+    {
+        Collider2D hit = Physics2D.OverlapPoint(mouseWorld, connectionLayer);
+        if(hit != null)
+        {
+            GameObject connectionGO = hit.gameObject;
+            ConnectionMono connectionMono = connectionGO.GetComponent<ConnectionMono>();
 
+            connectionMono.Connection.OutputPoint.DeleteConnection(connectionMono.Connection);
+            connectionMono.Connection.InputPoint.DeleteConnection(connectionMono.Connection);
+
+            activeConnections.Remove(connectionMono.Connection);
+            Destroy(connectionGO);
+        }
+    }
     private void DrawConnectionPreview(Vector3 from, Vector3 to)
     {
         connectionLinePreview.enabled = true;

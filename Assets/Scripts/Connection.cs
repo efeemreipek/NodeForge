@@ -38,5 +38,16 @@ public class Connection
         ConnectionLine.SetPosition(1, point1);
         ConnectionLine.SetPosition(2, point2);
         ConnectionLine.SetPosition(3, point3);
+
+        EdgeCollider2D edgeCollider = ConnectionLine.GetComponent<EdgeCollider2D>();
+        if(edgeCollider != null)
+        {
+            Vector2[] colliderPoints = new Vector2[4];
+            colliderPoints[0] = point0;
+            colliderPoints[1] = point1;
+            colliderPoints[2] = point2;
+            colliderPoints[3] = point3;
+            edgeCollider.points = colliderPoints;
+        }
     }
 }

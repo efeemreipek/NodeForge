@@ -13887,6 +13887,9 @@ MonoBehaviour:
   connectionPointLayer:
     serializedVersion: 2
     m_Bits: 128
+  connectionLayer:
+    serializedVersion: 2
+    m_Bits: 256
   connectionLinePreview: {fileID: 2138885872}
   connectionLineMaterial: {fileID: 2100000, guid: 943c18d963be04e40b781a899396f418, type: 2}
 --- !u!1 &1260566025

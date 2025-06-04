@@ -65,4 +65,8 @@ public class ConnectionPoint : MonoBehaviour
             }
         }
     }
+    public void DeleteConnection(Connection connection)
+    {
+        connections.Remove(connection);
+    }
 }
