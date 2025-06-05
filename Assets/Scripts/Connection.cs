@@ -7,7 +7,6 @@ public class Connection
     public Node ToNode;
     public ConnectionPoint InputPoint;
     public ConnectionPoint OutputPoint;
-    public float TransferBuffer = 0f;
     public LineRenderer ConnectionLine;
 
 
@@ -48,6 +47,19 @@ public class Connection
             colliderPoints[2] = point2;
             colliderPoints[3] = point3;
             edgeCollider.points = colliderPoints;
+        }
+    }
+    public void TransferResource(Resource resource, int amount)
+    {
+        if(ToNode is StorageNode)
+        {
+            StorageNode node = (StorageNode)ToNode;
+            node.AcceptResource(resource, amount);
+        }
+        else
+        {
+            FactoryNode node = (FactoryNode)ToNode;
+            node.AcceptResource(resource, amount);
         }
     }
 }

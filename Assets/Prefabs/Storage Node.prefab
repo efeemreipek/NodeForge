@@ -450,7 +450,6 @@ MonoBehaviour:
   - {fileID: 2711945677997041826}
   OutputPoints: []
   IsActive: 1
-  StorageCapacity: 100
 --- !u!1001 &3369957779278847712
 PrefabInstance:
   m_ObjectHideFlags: 0

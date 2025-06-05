@@ -18,13 +18,13 @@ public class ResourceUI : MonoBehaviour
         if(ResourceManager.HasInstance) ResourceManager.Instance.OnResourceAmountChanged -= UpdateUI;
     }
 
-    public void InitializeUI(Resource resource, Sprite icon, float amount)
+    public void InitializeUI(Resource resource, Sprite icon, int amount)
     {
         this.resource = resource;
         resourceIcon.sprite = icon;
         resourceAmountText.text = amount.ToString();
     }
-    private void UpdateUI(Resource resource, float amount)
+    private void UpdateUI(Resource resource, int amount)
     {
         if(this.resource != resource) return;
 

@@ -5,11 +5,11 @@ using AYellowpaper.SerializedCollections;
 public class ResourceManager : Singleton<ResourceManager>
 {
     [SerializedDictionary("Resource", "Amount")]
-    public SerializedDictionary<Resource, float> resources = new SerializedDictionary<Resource, float>();
+    public SerializedDictionary<Resource, int> resources = new SerializedDictionary<Resource, int>();
 
-    public event Action<Resource, float> OnResourceAmountChanged;
+    public event Action<Resource, int> OnResourceAmountChanged;
 
-    public void AddResource(Resource resource, float amount)
+    public void AddResource(Resource resource, int amount)
     {
         if(resources.ContainsKey(resource))
         {
@@ -22,26 +22,21 @@ public class ResourceManager : Singleton<ResourceManager>
 
         OnResourceAmountChanged.Invoke(resource, GetResourceAmount(resource));
     }
-    public bool HasEnoughResources(List<ResourceAmount> required)
+    public bool HasEnoughResources(Resource resource, int amount)
     {
-        foreach(var req in required)
+        if(!resources.ContainsKey(resource) || resources[resource] < amount)
         {
-            if(!resources.ContainsKey(req.Resource) || resources[req.Resource] < req.Amount)
-            {
-                return false;
-            }
+            return false;
         }
         return true;
     }
-    public void ConsumeResources(List<ResourceAmount> required)
+    public void ConsumeResources(Resource resource, int amount)
     {
-        foreach(var req in required)
-        {
-            resources[req.Resource] -= req.Amount;
-        }
+        resources[resource] -= amount;
+        OnResourceAmountChanged.Invoke(resource, GetResourceAmount(resource));
     }
-    public float GetResourceAmount(Resource resource)
+    public int GetResourceAmount(Resource resource)
     {
-        return resources.ContainsKey(resource) ? resources[resource] : 0f;
+        return resources.ContainsKey(resource) ? resources[resource] : 0;
     }
 }

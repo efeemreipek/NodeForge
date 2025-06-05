@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class StorageNode : Node
 {
     private void Start()
@@ -8,5 +6,10 @@ public class StorageNode : Node
         {
             inputPoint.InitializeConnectionPoint();
         }
+    }
+
+    public void AcceptResource(Resource resource, int amount)
+    {
+        ResourceManager.Instance.AddResource(resource, amount);
     }
 }

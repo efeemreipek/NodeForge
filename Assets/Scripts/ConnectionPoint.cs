@@ -12,7 +12,6 @@ public class ConnectionPoint : MonoBehaviour
 {
     [SerializeField] private Resource resource;
     [SerializeField] private ConnectionType connectionType;
-    [SerializeField] private float transferRate = 1f;
     [SerializeField] private List<Connection> connections = new List<Connection>();
 
     private Node parentNode;
@@ -20,6 +19,7 @@ public class ConnectionPoint : MonoBehaviour
 
     public ConnectionType ConnectionType => connectionType;
     public Node ParentNode => parentNode;
+    public List<Connection> Connections => connections;
 
     private void Awake()
     {
