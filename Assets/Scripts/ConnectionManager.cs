@@ -27,7 +27,7 @@ public class ConnectionManager : Singleton<ConnectionManager>
 
         if(InputHandler.Instance.MouseLeftClickHold && draggingFromPoint != null)
         {
-            DrawConnectionPreview(draggingFromPoint.transform.position, mouseWorld);
+            DrawConnectionPreview(draggingFromPoint, mouseWorld);
         }
         if(InputHandler.Instance.MouseLeftClickPressed)
         {
@@ -91,6 +91,7 @@ public class ConnectionManager : Singleton<ConnectionManager>
         lr.positionCount = 4;
         lr.startWidth = 0.05f;
         lr.endWidth = 0.05f;
+        lr.numCornerVertices = 4;
         lr.material = connectionLineMaterial;
         lr.useWorldSpace = true;
         lr.sortingOrder = -1;
@@ -169,15 +170,25 @@ public class ConnectionManager : Singleton<ConnectionManager>
 
         activeConnections.Remove(connection);
     }
-    private void DrawConnectionPreview(Vector3 from, Vector3 to)
+    private void DrawConnectionPreview(ConnectionPoint fromPoint, Vector3 to)
     {
         connectionLinePreview.enabled = true;
         connectionLinePreview.positionCount = 4;
 
-        Vector3 point0 = from;
+        Vector3 point0 = fromPoint.transform.position;
         Vector3 point3 = to;
-        Vector3 point1 = new Vector3(point0.x + 0.5f, point0.y, 0f);
-        Vector3 point2 = new Vector3(point3.x - 0.5f, point3.y, 0f);
+
+        Vector3 point1, point2;
+        if(fromPoint.ConnectionType == ConnectionType.Input)
+        {
+            point1 = new Vector3(point0.x - 0.5f, point0.y, 0f);
+            point2 = new Vector3(point3.x + 0.5f, point3.y, 0f);
+        }
+        else
+        {
+            point1 = new Vector3(point0.x + 0.5f, point0.y, 0f);
+            point2 = new Vector3(point3.x - 0.5f, point3.y, 0f);
+        }
 
         connectionLinePreview.SetPosition(0, point0);
         connectionLinePreview.SetPosition(1, point1);
