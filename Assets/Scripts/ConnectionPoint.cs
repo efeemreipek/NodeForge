@@ -12,14 +12,14 @@ public class ConnectionPoint : MonoBehaviour
 {
     [SerializeField] private Resource resource;
     [SerializeField] private ConnectionType connectionType;
-    [SerializeField] private List<Connection> connections = new List<Connection>();
+    [SerializeField] private Connection connection;
 
     private Node parentNode;
     private ConnectionPointUI ui;
 
     public ConnectionType ConnectionType => connectionType;
     public Node ParentNode => parentNode;
-    public List<Connection> Connections => connections;
+    public Connection Connection => connection;
 
     private void Awake()
     {
@@ -31,42 +31,39 @@ public class ConnectionPoint : MonoBehaviour
     {
         this.resource = resource;
         ui.InitializeUI(this.resource);
+
+        connection = null;
     }
     public void InitializeConnectionPoint()
     {
         ui.InitializeUI();
+
+        connection = null;
     }
     public void AddConnection(Connection connection)
     {
-        connections.Add(connection);
+        this.connection = connection;
     }
-    public void DeleteConnections()
+    public void ClearConnection()
     {
-        for(int i = connections.Count - 1; i >= 0; i--)
+        if(connection != null)
         {
-            if(connections[i] != null)
+            if(connection.InputPoint != null && connection.InputPoint != this)
             {
-                Connection otherConnection = connections[i];
-                if(otherConnection.InputPoint != this)
-                {
-                    otherConnection.InputPoint.connections.Remove(otherConnection);
-                }
-                else if(otherConnection.OutputPoint != this)
-                {
-                    otherConnection.OutputPoint.connections.Remove(otherConnection);
-                }
-
-                if(otherConnection.ConnectionLine != null && otherConnection.ConnectionLine.gameObject != null)
-                {
-                    Destroy(otherConnection.ConnectionLine.gameObject);
-                }
-
-                connections.RemoveAt(i);
+                connection.InputPoint.connection = null;
             }
+
+            if(connection.OutputPoint != null && connection.OutputPoint != this)
+            {
+                connection.OutputPoint.connection = null;
+            }
+
+            if(connection.ConnectionLine != null && connection.ConnectionLine.gameObject != null)
+            {
+                Destroy(connection.ConnectionLine.gameObject);
+            }
+
+            connection = null;
         }
-    }
-    public void DeleteConnection(Connection connection)
-    {
-        connections.Remove(connection);
     }
 }

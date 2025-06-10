@@ -70,6 +70,16 @@ public class ConnectionManager : Singleton<ConnectionManager>
         if(targetPoint == null || targetPoint == draggingFromPoint) return;
         if(draggingFromPoint.ConnectionType == targetPoint.ConnectionType) return;
 
+        if(draggingFromPoint.Connection != null)
+        {
+            RemoveConnection(draggingFromPoint.Connection);
+        }
+        if(targetPoint.Connection != null)
+        {
+            RemoveConnection(targetPoint.Connection);
+        }
+
+
         CreateConnectionLine(draggingFromPoint, targetPoint);
     }
     private void CreateConnectionLine(ConnectionPoint from, ConnectionPoint to)
@@ -137,12 +147,27 @@ public class ConnectionManager : Singleton<ConnectionManager>
             GameObject connectionGO = hit.gameObject;
             ConnectionMono connectionMono = connectionGO.GetComponent<ConnectionMono>();
 
-            connectionMono.Connection.OutputPoint.DeleteConnection(connectionMono.Connection);
-            connectionMono.Connection.InputPoint.DeleteConnection(connectionMono.Connection);
-
-            activeConnections.Remove(connectionMono.Connection);
-            Destroy(connectionGO);
+            RemoveConnection(connectionMono.Connection);
         }
+    }
+    private void RemoveConnection(Connection connection)
+    {
+        if(connection.InputPoint != null)
+        {
+            connection.InputPoint.ClearConnection();
+        }
+
+        if(connection.OutputPoint != null)
+        {
+            connection.OutputPoint.ClearConnection();
+        }
+
+        if(connection.ConnectionLine != null && connection.ConnectionLine.gameObject != null)
+        {
+            Destroy(connection.ConnectionLine.gameObject);
+        }
+
+        activeConnections.Remove(connection);
     }
     private void DrawConnectionPreview(Vector3 from, Vector3 to)
     {

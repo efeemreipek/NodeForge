@@ -46,11 +46,8 @@ public class SupplyNode : Node
     {
         foreach(ConnectionPoint outputPoint in OutputPoints)
         {
-            foreach(Connection connection in outputPoint.Connections)
-            {
-                connection.TransferResource(resource, amount);
-                ResourceManager.Instance.ConsumeResources(resource, amount);
-            }
+            outputPoint.Connection.TransferResource(resource, amount);
+            ResourceManager.Instance.ConsumeResources(resource, amount);
         }
     }
 }

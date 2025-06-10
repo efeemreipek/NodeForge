@@ -14,11 +14,11 @@ public abstract class Node : MonoBehaviour
     {
         foreach(var connectionPoint in InputPoints)
         {
-            connectionPoint.DeleteConnections();
+            connectionPoint.ClearConnection();
         }
         foreach(var connectionPoint in OutputPoints)
         {
-            connectionPoint.DeleteConnections();
+            connectionPoint.ClearConnection();
         }
     }
     protected bool HasConnections()
@@ -29,7 +29,7 @@ public abstract class Node : MonoBehaviour
     {
         foreach(var connectionPoint in InputPoints)
         {
-            if(connectionPoint.Connections.Count == 0) continue;
+            if(connectionPoint.Connection == null) continue;
             else return true;
         }
 
@@ -39,7 +39,7 @@ public abstract class Node : MonoBehaviour
     {
         foreach(var connectionPoint in OutputPoints)
         {
-            if(connectionPoint.Connections.Count == 0) continue;
+            if(connectionPoint.Connection == null) continue;
             else return true;
         }
 

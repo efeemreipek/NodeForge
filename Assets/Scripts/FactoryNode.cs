@@ -163,14 +163,11 @@ public class FactoryNode : Node
     {
         foreach(ConnectionPoint outputPoint in OutputPoints)
         {
-            foreach(Connection connection in outputPoint.Connections)
+            foreach(ResourceAmount ra in resources)
             {
-                foreach(ResourceAmount ra in resources)
-                {
-                    connection.TransferResource(ra.Resource, 1);
-                    OutputStorage[ra.Resource] -= ra.Amount;
-                    //ResourceManager.Instance.ConsumeResources(ra.Resource, 1);
-                }
+                outputPoint.Connection.TransferResource(ra.Resource, 1);
+                OutputStorage[ra.Resource] -= ra.Amount;
+                //ResourceManager.Instance.ConsumeResources(ra.Resource, 1);
             }
         }
     }
