@@ -35,31 +35,6 @@ public class FactoryNode : Node
         InitializeStorages();
         ui.UpdateProgressBar(0f);
     }
-    //private void Update()
-    //{
-    //    if(!IsActive) return;
-    //    foreach(ResourceAmount ra in Recipe.Inputs)
-    //    {
-    //        if(InputStorage[ra.Resource] == 0) return;
-    //    }
-    //    foreach(ResourceAmount ra in Recipe.Outputs)
-    //    {
-    //        if(OutputStorage[ra.Resource] >= StorageCapacity) return;
-    //    }
-
-    //    if(processTimer < Recipe.ProductionTime)
-    //    {
-    //        processTimer += Time.deltaTime;
-    //        ui.UpdateProgressBar(processTimer / Recipe.ProductionTime);
-    //        return;
-    //    }
-    //    processTimer = 0f;
-
-    //    ProcessResource();
-    //    TransferResource(Recipe.Outputs);
-    //    ui.UpdateProgressBar(0f);
-    //}
-
     private void Update()
     {
         if(!IsActive) return;
@@ -67,16 +42,16 @@ public class FactoryNode : Node
         switch(currentState)
         {
             case State.Idle:
-                if(CanProcess())
-                {
-                    currentState = State.Processing;
-                    processTimer = 0f;
-                    ui.UpdateProgressBar(0f);
-                }
-                else if(CanTransfer())
+                if(CanTransfer())
                 {
                     currentState = State.Transferring;
                     transferTimer = 0f;
+                    ui.UpdateProgressBar(0f);
+                }
+                else if(CanProcess())
+                {
+                    currentState = State.Processing;
+                    processTimer = 0f;
                     ui.UpdateProgressBar(0f);
                 }
                 break;
@@ -96,14 +71,13 @@ public class FactoryNode : Node
                 break;
 
             case State.Transferring:
-                if(transferTimer < 1f) // You can define transfer duration
+                if(transferTimer < 1f)
                 {
                     transferTimer += Time.deltaTime;
                     ui.UpdateProgressBar(transferTimer / 1f);
                 }
                 else
                 {
-                    //TransferAvailableResources();
                     TransferResource(Recipe.Outputs);
                     currentState = State.Idle;
                     ui.UpdateProgressBar(0f);
@@ -115,24 +89,20 @@ public class FactoryNode : Node
     {
         foreach(var input in Recipe.Inputs)
         {
-            if(InputStorage[input.Resource] < input.Amount)
-                return false;
+            if(InputStorage[input.Resource] < input.Amount) return false;
         }
         foreach(var output in Recipe.Outputs)
         {
-            if(OutputStorage[output.Resource] + output.Amount > StorageCapacity)
-                return false;
+            if(OutputStorage[output.Resource] + output.Amount > StorageCapacity) return false;
         }
         return true;
     }
-
     private bool CanTransfer()
     {
         if(!HasOutputConnections()) return false;
         foreach(var output in Recipe.Outputs)
         {
-            if(OutputStorage[output.Resource] > 0)
-                return true;
+            if(OutputStorage[output.Resource] > 0) return true;
         }
         return false;
     }
@@ -167,7 +137,6 @@ public class FactoryNode : Node
             {
                 outputPoint.Connection.TransferResource(ra.Resource, 1);
                 OutputStorage[ra.Resource] -= ra.Amount;
-                //ResourceManager.Instance.ConsumeResources(ra.Resource, 1);
             }
         }
     }
