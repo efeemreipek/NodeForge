@@ -54,9 +54,12 @@ public class NodeBuildButton : MonoBehaviour
     {
         GameObject nodeGO = Instantiate(prefab);
 
-        foreach(ResourceAmount requirement in buildRequirements)
+        if(hasBuildRequirements)
         {
-            ResourceManager.Instance.ConsumeResources(requirement.Resource, requirement.Amount);
+            foreach(ResourceAmount requirement in buildRequirements)
+            {
+                ResourceManager.Instance.ConsumeResources(requirement.Resource, requirement.Amount);
+            }
         }
     }
     public void InitializeRequirements(bool hasRequirements, List<ResourceAmount> buildRequirements)
