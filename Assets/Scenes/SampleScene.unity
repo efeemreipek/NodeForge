@@ -1118,7 +1118,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1539430554}
   m_HandleRect: {fileID: 1539430553}
   m_Direction: 0
-  m_Value: 0.50000054
+  m_Value: 0.50000006
   m_Size: 0.50000006
   m_NumberOfSteps: 1
   m_OnValueChanged:
@@ -1885,6 +1885,7 @@ GameObject:
   - component: {fileID: 135828537}
   - component: {fileID: 135828536}
   - component: {fileID: 135828535}
+  - component: {fileID: 135828538}
   m_Layer: 5
   m_Name: Mine Resource (Wood)
   m_TagString: Untagged
@@ -1955,7 +1956,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 135828536}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 135828538}
+        m_TargetAssemblyTypeName: ResourceMiner, Assembly-CSharp
+        m_MethodName: MineResource
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &135828536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1994,6 +2007,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 135828533}
   m_CullTransparentMesh: 1
+--- !u!114 &135828538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135828533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 136dfffaa3e84e74a8f0be22ebfdc899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resource: {fileID: 11400000, guid: d210a2a608edf6a499a201ef809ad340, type: 2}
 --- !u!1 &143452053
 GameObject:
   m_ObjectHideFlags: 0
@@ -2869,7 +2895,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contentTransform: {fileID: 1584453261}
   scrollbar: {fileID: 87629598}
-  snapSpeed: 3
+  snapSpeed: 8
   snapThreshold: 0.001
 --- !u!1 &241129706
 GameObject:
@@ -7041,6 +7067,7 @@ GameObject:
   - component: {fileID: 610245779}
   - component: {fileID: 610245778}
   - component: {fileID: 610245777}
+  - component: {fileID: 610245780}
   m_Layer: 5
   m_Name: Mine Resource (Raw Iron)
   m_TagString: Untagged
@@ -7111,7 +7138,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 610245778}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 610245780}
+        m_TargetAssemblyTypeName: ResourceMiner, Assembly-CSharp
+        m_MethodName: MineResource
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &610245778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7150,6 +7189,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 610245775}
   m_CullTransparentMesh: 1
+--- !u!114 &610245780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610245775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 136dfffaa3e84e74a8f0be22ebfdc899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resource: {fileID: 11400000, guid: 811a3acbcf3c1d94f9a9126e1d4599e9, type: 2}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -18996,7 +19048,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000061035156, y: -8.499991}
+  m_AnchoredPosition: {x: 0.00015258789, y: -8.499991}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1584453262

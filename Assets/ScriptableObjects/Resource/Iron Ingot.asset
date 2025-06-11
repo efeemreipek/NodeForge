@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Iron Ingot
   m_EditorClassIdentifier: 
   Name: Iron Ingot
-  Icon: {fileID: -4285704637475842466, guid: fe7c6ab8cc1c27a4dac032598ccf61a0, type: 3}
+  Icon: {fileID: 21300000, guid: fe7c6ab8cc1c27a4dac032598ccf61a0, type: 3}
   Color: {r: 0.726, g: 0.69241464, b: 0.684618, a: 1}

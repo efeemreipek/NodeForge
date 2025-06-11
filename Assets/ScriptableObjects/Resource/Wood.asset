@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c31f2456280b6da40a732c55a0703505, type: 3}
-  m_Name: Raw Iron
+  m_Name: Wood
   m_EditorClassIdentifier: 
-  Name: Raw Iron
-  Icon: {fileID: 21300000, guid: 80757f5f87ad0154bbfc1a791ea6abbe, type: 3}
-  Color: {r: 0.99371064, g: 0.772662, b: 0.72184634, a: 1}
+  Name: Wood
+  Icon: {fileID: 21300000, guid: 1baaace270f989e4e9ef625171947197, type: 3}
+  Color: {r: 0.34591186, g: 0.11511113, b: 0, a: 1}

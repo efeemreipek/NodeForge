@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 80757f5f87ad0154bbfc1a791ea6abbe
+guid: 1baaace270f989e4e9ef625171947197
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2323868980182858109
-    second: raw_iron_0
+      213: 7440981132975211316
+    second: wood_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: raw_iron_0
+      name: wood_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1
-        width: 125
-        height: 127
+        x: 3
+        y: 21
+        width: 122
+        height: 86
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d79395c668a004020800000000000000
-      internalID: 2323868980182858109
+      spriteID: 4330f5b9aeca34760800000000000000
+      internalID: 7440981132975211316
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      raw_iron_0: 2323868980182858109
+      wood_0: 7440981132975211316
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
