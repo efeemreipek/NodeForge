@@ -19,4 +19,8 @@ public class NodeBuildButtonUI : MonoBehaviour
         buttonNameText.text = buttonName;
         button.onClick.AddListener(() => buttonOnClick());
     }
+    public void SetButtonEnabled(bool enabled)
+    {
+        button.interactable = enabled;
+    }
 }

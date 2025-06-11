@@ -8,6 +8,7 @@ public class ResourceManager : Singleton<ResourceManager>
     public SerializedDictionary<Resource, int> resources = new SerializedDictionary<Resource, int>();
 
     public event Action<Resource, int> OnResourceAmountChanged;
+    public event Action OnInventoryChanged;
 
     public void AddResource(Resource resource, int amount)
     {
@@ -21,6 +22,7 @@ public class ResourceManager : Singleton<ResourceManager>
         }
 
         OnResourceAmountChanged.Invoke(resource, GetResourceAmount(resource));
+        OnInventoryChanged?.Invoke();
     }
     public bool HasEnoughResources(Resource resource, int amount)
     {
@@ -34,6 +36,7 @@ public class ResourceManager : Singleton<ResourceManager>
     {
         resources[resource] -= amount;
         OnResourceAmountChanged.Invoke(resource, GetResourceAmount(resource));
+        OnInventoryChanged?.Invoke();
     }
     public int GetResourceAmount(Resource resource)
     {
