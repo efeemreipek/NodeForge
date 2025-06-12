@@ -70,6 +70,7 @@ public class NodeBuildButton : MonoBehaviour
         if(hasBuildRequirements)
         {
             this.buildRequirements = buildRequirements;
+            ui.SetupRequirements(buildRequirements);
         }
     }
 }
