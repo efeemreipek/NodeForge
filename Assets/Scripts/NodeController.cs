@@ -280,6 +280,7 @@ public class NodeController : Singleton<NodeController>
     {
         selectedNodes.Add(node);
         node.SelectedVisualGO.SetActive(true);
+        node.BringToFront();
     }
     private void RemoveNodeFromSelected(Node node)
     {
@@ -293,6 +294,11 @@ public class NodeController : Singleton<NodeController>
             node.SelectedVisualGO.SetActive(false);
         }
         selectedNodes.Clear();
+    }
+    public void SelectSingleNode(Node node)
+    {
+        ClearSelection();
+        AddNodeToSelected(node);
     }
     private void ClearSelection()
     {

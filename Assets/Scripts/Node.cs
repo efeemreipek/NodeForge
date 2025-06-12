@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public abstract class Node : MonoBehaviour
 {
@@ -10,7 +11,14 @@ public abstract class Node : MonoBehaviour
 
     public bool IsActive = true;
 
-    private void OnDestroy()
+    protected SortingGroup sortingGroup;
+    private static int sortingOrderCounter = 0;
+
+    protected virtual void Awake()
+    {
+        sortingGroup = GetComponent<SortingGroup>();
+    }
+    protected void OnDestroy()
     {
         foreach(var connectionPoint in InputPoints)
         {
@@ -44,5 +52,21 @@ public abstract class Node : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void BringToFront()
+    {
+        sortingOrderCounter++;
+        if(sortingGroup != null)
+        {
+            sortingGroup.sortingOrder = sortingOrderCounter;
+        }
+    }
+    public void ResetSortingOrder(int order)
+    {
+        if(sortingGroup != null)
+        {
+            sortingGroup.sortingOrder = order;
+        }
     }
 }

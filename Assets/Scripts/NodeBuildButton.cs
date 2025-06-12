@@ -55,6 +55,8 @@ public class NodeBuildButton : MonoBehaviour
         Vector3 center = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width * 0.5f, Screen.height * 0.5f));
         Vector3 centerGrid = NodeController.Instance.SnapToGrid(center);
         GameObject nodeGO = Instantiate(prefab, centerGrid, Quaternion.identity);
+        Node node = nodeGO.GetComponent<Node>();
+        NodeController.Instance.SelectSingleNode(node);
 
         if(hasBuildRequirements)
         {

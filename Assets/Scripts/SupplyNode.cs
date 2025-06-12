@@ -10,8 +10,9 @@ public class SupplyNode : Node
 
     private SupplyNodeUI ui;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         ui = GetComponent<SupplyNodeUI>();
     }
     private void Start()

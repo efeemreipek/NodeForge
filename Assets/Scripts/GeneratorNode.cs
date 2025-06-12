@@ -9,8 +9,9 @@ public class GeneratorNode : Node
 
     private GeneratorNodeUI ui;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         ui = GetComponent<GeneratorNodeUI>();
     }
     private void Start()

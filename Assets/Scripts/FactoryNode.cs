@@ -17,8 +17,9 @@ public class FactoryNode : Node
     private State currentState = State.Idle;
     private FactoryNodeUI ui;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         ui = GetComponent<FactoryNodeUI>();
     }
     private void Start()
