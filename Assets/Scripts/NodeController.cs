@@ -300,7 +300,7 @@ public class NodeController : Singleton<NodeController>
         nodeOffsets.Clear();
         isDragging = false; 
     }
-    private Vector3 SnapToGrid(Vector3 position)
+    public Vector3 SnapToGrid(Vector3 position)
     {
         float cellSize = GridDrawer.Instance.CellSize;
         float x = Mathf.Round(position.x / cellSize) * cellSize;
