@@ -14,3 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Generator Node (Raw Iron)
   Prefab: {fileID: 6180016590913896708, guid: 660ab47535609304689b55ed0199ab16, type: 3}
+  HasBuildRequirements: 1
+  BuildRequirements:
+  - Resource: {fileID: 11400000, guid: 811a3acbcf3c1d94f9a9126e1d4599e9, type: 2}
+    Amount: 20
