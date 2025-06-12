@@ -1,10 +1,9 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GeneratorNodeUI : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer resourceIconSprite;
-    [SerializeField] private Image progressBarImage;
+    [SerializeField] private Transform progressBar;
 
     private void Awake()
     {
@@ -13,6 +12,6 @@ public class GeneratorNodeUI : MonoBehaviour
 
     public void UpdateProgressBar(float progress)
     {
-        progressBarImage.fillAmount = progress;
+        progressBar.localScale = new Vector3(progress, 1f, 1f);
     }
 }

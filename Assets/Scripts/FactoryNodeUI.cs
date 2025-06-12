@@ -1,12 +1,11 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class FactoryNodeUI : MonoBehaviour
 {
-    [SerializeField] private Image progressBarImage;
+    [SerializeField] private Transform progressBar;
 
     public void UpdateProgressBar(float progress)
     {
-        progressBarImage.fillAmount = progress;
+        progressBar.localScale = new Vector3(progress, 1f, 1f);
     }
 }

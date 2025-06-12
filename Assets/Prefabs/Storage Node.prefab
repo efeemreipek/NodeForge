@@ -361,6 +361,7 @@ GameObject:
   - component: {fileID: 195730328940610730}
   - component: {fileID: 1989574450938241431}
   - component: {fileID: 1732561767289930960}
+  - component: {fileID: 5009714272628335774}
   m_Layer: 6
   m_Name: Storage Node
   m_TagString: Untagged
@@ -450,6 +451,18 @@ MonoBehaviour:
   - {fileID: 2711945677997041826}
   OutputPoints: []
   IsActive: 1
+--- !u!210 &5009714272628335774
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7669956853766472001}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
 --- !u!1001 &3369957779278847712
 PrefabInstance:
   m_ObjectHideFlags: 0
