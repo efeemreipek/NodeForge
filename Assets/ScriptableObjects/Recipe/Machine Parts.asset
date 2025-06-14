@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c2f460df73b2734ba53de730cb9e57e, type: 3}
+  m_Name: Machine Parts
+  m_EditorClassIdentifier: 
+  RecipeName: Machine Parts
+  ProductionTime: 1
+  Inputs:
+  - Resource: {fileID: 11400000, guid: 43a92975f6551ae4a9c5fc821b5c0771, type: 2}
+    Amount: 2
+  - Resource: {fileID: 11400000, guid: 7a4ec25c0fe43bc4f9ca714c0a0462c3, type: 2}
+    Amount: 2
+  Outputs:
+  - Resource: {fileID: 11400000, guid: 44d55a726d63a254bbe9965cb3d83e07, type: 2}
+    Amount: 1
