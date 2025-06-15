@@ -10,13 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8e7b650ad0c1f249b206290f27a795b, type: 3}
-  m_Name: Generator Node Raw Iron
+  m_Name: Generator Node Stone
   m_EditorClassIdentifier: 
-  Name: Generator Node (Raw Iron)
-  Prefab: {fileID: 6180016590913896708, guid: 660ab47535609304689b55ed0199ab16, type: 3}
+  Name: Generator Node (Stone)
+  Prefab: {fileID: 343961347072285753, guid: fe09f4ec58d5fed46bb6fc7a9b45c2c4, type: 3}
   HasBuildRequirements: 1
   BuildRequirements:
   - Resource: {fileID: 11400000, guid: d210a2a608edf6a499a201ef809ad340, type: 2}
     Amount: 20
-  - Resource: {fileID: 11400000, guid: 721f25956eeb879439abf0137b58a28b, type: 2}
-    Amount: 10

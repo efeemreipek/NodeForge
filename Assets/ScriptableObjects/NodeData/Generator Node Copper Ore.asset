@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8e7b650ad0c1f249b206290f27a795b, type: 3}
-  m_Name: Generator Node Raw Iron
+  m_Name: Generator Node Copper Ore
   m_EditorClassIdentifier: 
-  Name: Generator Node (Raw Iron)
-  Prefab: {fileID: 6180016590913896708, guid: 660ab47535609304689b55ed0199ab16, type: 3}
+  Name: Generator Node (Copper Ore)
+  Prefab: {fileID: 2771299912759924471, guid: 347eae2e9c903ec42b007033f09a6589, type: 3}
   HasBuildRequirements: 1
   BuildRequirements:
   - Resource: {fileID: 11400000, guid: d210a2a608edf6a499a201ef809ad340, type: 2}

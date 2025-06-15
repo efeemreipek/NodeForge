@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8e7b650ad0c1f249b206290f27a795b, type: 3}
+  m_Name: Supply Node Sand
+  m_EditorClassIdentifier: 
+  Name: Supply Node (Sand)
+  Prefab: {fileID: 4450447973193052357, guid: 638f4ed42f853de4d8d7a1ad3bffaaf0, type: 3}
+  HasBuildRequirements: 0
+  BuildRequirements: []
