@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8e7b650ad0c1f249b206290f27a795b, type: 3}
-  m_Name: Smelter
+  m_Name: Copper Smelter
   m_EditorClassIdentifier: 
-  Name: Smelter
-  Prefab: {fileID: 5802611885965220859, guid: 2f08b22ec9ac79c4296dbba4e717e197, type: 3}
+  Name: Copper Smelter
+  Prefab: {fileID: 5802611885965220859, guid: b33cfeb92ddd62a4f9ca24f78abf3a12, type: 3}
   HasBuildRequirements: 1
   BuildRequirements:
   - Resource: {fileID: 11400000, guid: 811a3acbcf3c1d94f9a9126e1d4599e9, type: 2}

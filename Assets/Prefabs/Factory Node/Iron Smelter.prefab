@@ -155,11 +155,11 @@ PrefabInstance:
       objectReference: {fileID: 8774829237762442190}
     - target: {fileID: 8560300318110960333, guid: 96ff802c3a7f9034aa50e6a5426a5d23, type: 3}
       propertyPath: m_Name
-      value: Smelter
+      value: Iron Smelter
       objectReference: {fileID: 0}
     - target: {fileID: 8931380878787493427, guid: 96ff802c3a7f9034aa50e6a5426a5d23, type: 3}
       propertyPath: m_text
-      value: SMELTER
+      value: IRON SMELTER
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
