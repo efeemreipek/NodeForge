@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Charcoal
   m_EditorClassIdentifier: 
   RecipeName: Charcoal
-  ProductionTime: 1
+  ProductionTime: 2
   Inputs:
   - Resource: {fileID: 11400000, guid: d210a2a608edf6a499a201ef809ad340, type: 2}
-    Amount: 1
+    Amount: 3
   Outputs:
   - Resource: {fileID: 11400000, guid: 7a7a4f509cc0a5a46923ea7bd50e5c75, type: 2}
     Amount: 1

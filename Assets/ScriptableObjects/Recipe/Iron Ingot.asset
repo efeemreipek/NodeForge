@@ -16,7 +16,7 @@ MonoBehaviour:
   ProductionTime: 1
   Inputs:
   - Resource: {fileID: 11400000, guid: 811a3acbcf3c1d94f9a9126e1d4599e9, type: 2}
-    Amount: 1
+    Amount: 2
   Outputs:
   - Resource: {fileID: 11400000, guid: 154227089b5ed5746a5bb1bd4a3319ff, type: 2}
     Amount: 1

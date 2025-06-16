@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Circuit Board
   m_EditorClassIdentifier: 
   RecipeName: Circuit Board
-  ProductionTime: 1
+  ProductionTime: 4
   Inputs:
   - Resource: {fileID: 11400000, guid: a57c96bdf3c66494ebffdd3b600abd36, type: 2}
     Amount: 3
   - Resource: {fileID: 11400000, guid: 048454d8980bdf845868e58f38df7779, type: 2}
-    Amount: 2
+    Amount: 3
   Outputs:
   - Resource: {fileID: 11400000, guid: 7a4ec25c0fe43bc4f9ca714c0a0462c3, type: 2}
     Amount: 1

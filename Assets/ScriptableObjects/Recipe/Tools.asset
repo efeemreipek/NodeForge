@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Tools
   m_EditorClassIdentifier: 
   RecipeName: Tools
-  ProductionTime: 1
+  ProductionTime: 3
   Inputs:
   - Resource: {fileID: 11400000, guid: 154227089b5ed5746a5bb1bd4a3319ff, type: 2}
-    Amount: 2
+    Amount: 3
   - Resource: {fileID: 11400000, guid: 7a7a4f509cc0a5a46923ea7bd50e5c75, type: 2}
     Amount: 1
   Outputs:

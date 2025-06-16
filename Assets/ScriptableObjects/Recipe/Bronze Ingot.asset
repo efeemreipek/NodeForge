@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Bronze Ingot
   m_EditorClassIdentifier: 
   RecipeName: Bronze Ingot
-  ProductionTime: 1
+  ProductionTime: 3
   Inputs:
   - Resource: {fileID: 11400000, guid: 154227089b5ed5746a5bb1bd4a3319ff, type: 2}
-    Amount: 2
+    Amount: 3
   - Resource: {fileID: 11400000, guid: a57c96bdf3c66494ebffdd3b600abd36, type: 2}
-    Amount: 2
+    Amount: 3
   Outputs:
   - Resource: {fileID: 11400000, guid: d02f39053d5ac0d41ba827e9768cde1d, type: 2}
-    Amount: 1
+    Amount: 2

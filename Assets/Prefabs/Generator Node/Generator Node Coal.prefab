@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: Resource
       value: 
       objectReference: {fileID: 11400000, guid: 05c94cc96dadcd241be48337acf85364, type: 2}
+    - target: {fileID: 7778828460329232198, guid: 7f34d836b5694424ab8f1b198d490473, type: 3}
+      propertyPath: GenerateTime
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
