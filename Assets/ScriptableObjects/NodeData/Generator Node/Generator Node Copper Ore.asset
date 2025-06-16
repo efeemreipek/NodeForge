@@ -18,5 +18,5 @@ MonoBehaviour:
   BuildRequirements:
   - Resource: {fileID: 11400000, guid: d210a2a608edf6a499a201ef809ad340, type: 2}
     Amount: 20
-  - Resource: {fileID: 11400000, guid: 721f25956eeb879439abf0137b58a28b, type: 2}
+  - Resource: {fileID: 11400000, guid: 05c94cc96dadcd241be48337acf85364, type: 2}
     Amount: 10

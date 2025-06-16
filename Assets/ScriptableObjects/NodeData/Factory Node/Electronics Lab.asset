@@ -14,5 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Electronics Lab
   Prefab: {fileID: 8038268558387728129, guid: 3073e23372d964f46b2a8849db916e17, type: 3}
-  HasBuildRequirements: 0
-  BuildRequirements: []
+  HasBuildRequirements: 1
+  BuildRequirements:
+  - Resource: {fileID: 11400000, guid: 154227089b5ed5746a5bb1bd4a3319ff, type: 2}
+    Amount: 40
+  - Resource: {fileID: 11400000, guid: 048454d8980bdf845868e58f38df7779, type: 2}
+    Amount: 40
+  - Resource: {fileID: 11400000, guid: 43a92975f6551ae4a9c5fc821b5c0771, type: 2}
+    Amount: 40
+  - Resource: {fileID: 11400000, guid: d02f39053d5ac0d41ba827e9768cde1d, type: 2}
+    Amount: 50

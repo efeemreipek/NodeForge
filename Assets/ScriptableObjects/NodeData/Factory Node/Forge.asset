@@ -14,5 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Forge
   Prefab: {fileID: 8038268558387728129, guid: f12ef81f6c0a1f44d97f4c12240d61df, type: 3}
-  HasBuildRequirements: 0
-  BuildRequirements: []
+  HasBuildRequirements: 1
+  BuildRequirements:
+  - Resource: {fileID: 11400000, guid: d210a2a608edf6a499a201ef809ad340, type: 2}
+    Amount: 100
+  - Resource: {fileID: 11400000, guid: 721f25956eeb879439abf0137b58a28b, type: 2}
+    Amount: 80
+  - Resource: {fileID: 11400000, guid: 154227089b5ed5746a5bb1bd4a3319ff, type: 2}
+    Amount: 20
+  - Resource: {fileID: 11400000, guid: a57c96bdf3c66494ebffdd3b600abd36, type: 2}
+    Amount: 20

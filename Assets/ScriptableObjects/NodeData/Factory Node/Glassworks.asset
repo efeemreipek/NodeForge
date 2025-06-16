@@ -14,5 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Glassworks
   Prefab: {fileID: 8038268558387728129, guid: 56d3035b2dc2fcb4aba449df6e600f9a, type: 3}
-  HasBuildRequirements: 0
-  BuildRequirements: []
+  HasBuildRequirements: 1
+  BuildRequirements:
+  - Resource: {fileID: 11400000, guid: d210a2a608edf6a499a201ef809ad340, type: 2}
+    Amount: 60
+  - Resource: {fileID: 11400000, guid: 721f25956eeb879439abf0137b58a28b, type: 2}
+    Amount: 50

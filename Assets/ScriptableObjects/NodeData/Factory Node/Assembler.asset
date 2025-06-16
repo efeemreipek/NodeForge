@@ -14,5 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Assembler
   Prefab: {fileID: 8038268558387728129, guid: 2e89fefa8bbfef24cb50dfa67c3698e5, type: 3}
-  HasBuildRequirements: 0
-  BuildRequirements: []
+  HasBuildRequirements: 1
+  BuildRequirements:
+  - Resource: {fileID: 11400000, guid: 154227089b5ed5746a5bb1bd4a3319ff, type: 2}
+    Amount: 100
+  - Resource: {fileID: 11400000, guid: a57c96bdf3c66494ebffdd3b600abd36, type: 2}
+    Amount: 100
+  - Resource: {fileID: 11400000, guid: 048454d8980bdf845868e58f38df7779, type: 2}
+    Amount: 100
+  - Resource: {fileID: 11400000, guid: 43a92975f6551ae4a9c5fc821b5c0771, type: 2}
+    Amount: 100
+  - Resource: {fileID: 11400000, guid: d02f39053d5ac0d41ba827e9768cde1d, type: 2}
+    Amount: 100

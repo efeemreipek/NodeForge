@@ -16,7 +16,7 @@ MonoBehaviour:
   Prefab: {fileID: 5802611885965220859, guid: 2f08b22ec9ac79c4296dbba4e717e197, type: 3}
   HasBuildRequirements: 1
   BuildRequirements:
-  - Resource: {fileID: 11400000, guid: 811a3acbcf3c1d94f9a9126e1d4599e9, type: 2}
-    Amount: 25
   - Resource: {fileID: 11400000, guid: d210a2a608edf6a499a201ef809ad340, type: 2}
-    Amount: 15
+    Amount: 40
+  - Resource: {fileID: 11400000, guid: 721f25956eeb879439abf0137b58a28b, type: 2}
+    Amount: 40

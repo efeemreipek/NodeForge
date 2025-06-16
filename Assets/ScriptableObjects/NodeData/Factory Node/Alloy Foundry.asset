@@ -14,5 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Alloy Foundry
   Prefab: {fileID: 8038268558387728129, guid: 1d3c7bf7473b1ba45aa78c99e616aac8, type: 3}
-  HasBuildRequirements: 0
-  BuildRequirements: []
+  HasBuildRequirements: 1
+  BuildRequirements:
+  - Resource: {fileID: 11400000, guid: 721f25956eeb879439abf0137b58a28b, type: 2}
+    Amount: 40
+  - Resource: {fileID: 11400000, guid: 154227089b5ed5746a5bb1bd4a3319ff, type: 2}
+    Amount: 40
+  - Resource: {fileID: 11400000, guid: 048454d8980bdf845868e58f38df7779, type: 2}
+    Amount: 20
+  - Resource: {fileID: 11400000, guid: 43a92975f6551ae4a9c5fc821b5c0771, type: 2}
+    Amount: 40

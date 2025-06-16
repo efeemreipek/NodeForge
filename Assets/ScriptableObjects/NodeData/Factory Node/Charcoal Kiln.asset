@@ -14,5 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Charcoal Kiln
   Prefab: {fileID: 690576064228993249, guid: d51919232dcba4e49819e22ae8748d60, type: 3}
-  HasBuildRequirements: 0
-  BuildRequirements: []
+  HasBuildRequirements: 1
+  BuildRequirements:
+  - Resource: {fileID: 11400000, guid: d210a2a608edf6a499a201ef809ad340, type: 2}
+    Amount: 80
+  - Resource: {fileID: 11400000, guid: 721f25956eeb879439abf0137b58a28b, type: 2}
+    Amount: 20
