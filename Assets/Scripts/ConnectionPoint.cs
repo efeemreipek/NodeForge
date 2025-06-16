@@ -20,6 +20,7 @@ public class ConnectionPoint : MonoBehaviour
     public ConnectionType ConnectionType => connectionType;
     public Node ParentNode => parentNode;
     public Connection Connection => connection;
+    public Resource Resource => resource;
 
     private void Awake()
     {
