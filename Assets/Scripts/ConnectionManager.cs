@@ -69,6 +69,7 @@ public class ConnectionManager : Singleton<ConnectionManager>
         ConnectionPoint targetPoint = hit.GetComponent<ConnectionPoint>();
         if(targetPoint == null || targetPoint == draggingFromPoint) return;
         if(draggingFromPoint.ConnectionType == targetPoint.ConnectionType) return;
+        if(draggingFromPoint.Resource != null && targetPoint.Resource != null && draggingFromPoint.Resource != targetPoint.Resource) return;
 
         if(draggingFromPoint.Connection != null)
         {
