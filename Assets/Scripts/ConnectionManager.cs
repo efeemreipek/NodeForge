@@ -95,8 +95,6 @@ public class ConnectionManager : Singleton<ConnectionManager>
         lr.material = connectionLineMaterial;
         lr.useWorldSpace = true;
         lr.sortingOrder = -1;
-        lr.startColor = from.Resource.Color;
-        lr.endColor = to.Resource == null ? Color.white : to.Resource.Color;
 
         Vector3 point0 = from.transform.position;
         Vector3 point3 = to.transform.position;

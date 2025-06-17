@@ -17,6 +17,9 @@ public class Connection
         InputPoint = inputPoint;
         OutputPoint = outputPoint;
         ConnectionLine = connectionLine;
+
+        ConnectionLine.startColor = OutputPoint.Resource == null ? Color.white : OutputPoint.Resource.Color;
+        ConnectionLine.endColor = InputPoint.Resource == null ? Color.white : InputPoint.Resource.Color;
     }
 
     public void UpdateLine()
