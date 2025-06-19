@@ -7,6 +7,7 @@ public class CheatCodes : MonoBehaviour
 
     private void Update()
     {
+#if UNITY_EDITOR
         if(Keyboard.current.digit1Key.wasPressedThisFrame)
         {
             ResourceManager.Instance.AddResource(List.Resources[0], 10);
@@ -63,5 +64,6 @@ public class CheatCodes : MonoBehaviour
         {
             ResourceManager.Instance.AddResource(List.Resources[13], 10);
         }
+#endif // if UNITY_EDITOR
     }
 }
