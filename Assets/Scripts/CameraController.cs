@@ -7,6 +7,8 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float zoomSpeed = 5f;
     [SerializeField] private float minZoom = 3f;
     [SerializeField] private float maxZoom = 20f;
+    [SerializeField] private float xBound = 16f;
+    [SerializeField] private float yBound = 20f;
 
     private Camera cam;
     private bool isDragging;
@@ -22,6 +24,7 @@ public class CameraController : MonoBehaviour
         HandleMovement();
         HandleDrag();
         HandleZoom();
+        ClampPosition();
     }
 
     private void HandleDrag()
@@ -56,5 +59,12 @@ public class CameraController : MonoBehaviour
             float newSize = cam.orthographicSize - InputHandler.Instance.CameraZoom * zoomSpeed * Time.deltaTime;
             cam.orthographicSize = Mathf.Clamp(newSize, minZoom, maxZoom);
         }
+    }
+    private void ClampPosition()
+    {
+        Vector3 clampedPosition = transform.position;
+        clampedPosition.x = Mathf.Clamp(clampedPosition.x, -xBound, xBound);
+        clampedPosition.y = Mathf.Clamp(clampedPosition.y, -yBound, yBound);
+        transform.position = clampedPosition;
     }
 }
