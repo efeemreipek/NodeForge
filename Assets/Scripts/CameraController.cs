@@ -7,8 +7,8 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float zoomSpeed = 5f;
     [SerializeField] private float minZoom = 3f;
     [SerializeField] private float maxZoom = 20f;
-    [SerializeField] private float xBound = 16f;
-    [SerializeField] private float yBound = 20f;
+    [SerializeField] private Vector2 zoomedInBounds;
+    [SerializeField] private Vector2 zoomedOutBounds;
 
     private Camera cam;
     private bool isDragging;
@@ -62,9 +62,15 @@ public class CameraController : MonoBehaviour
     }
     private void ClampPosition()
     {
+        float t = Mathf.InverseLerp(minZoom, maxZoom, cam.orthographicSize);
+
+        float dynamicXBound = Mathf.Lerp(zoomedInBounds.x, zoomedOutBounds.x, t);
+        float dynamicYBound = Mathf.Lerp(zoomedInBounds.y, zoomedOutBounds.y, t);
+
         Vector3 clampedPosition = transform.position;
-        clampedPosition.x = Mathf.Clamp(clampedPosition.x, -xBound, xBound);
-        clampedPosition.y = Mathf.Clamp(clampedPosition.y, -yBound, yBound);
+        clampedPosition.x = Mathf.Clamp(clampedPosition.x, -dynamicXBound, dynamicXBound);
+        clampedPosition.y = Mathf.Clamp(clampedPosition.y, -dynamicYBound, dynamicYBound);
+
         transform.position = clampedPosition;
     }
 }

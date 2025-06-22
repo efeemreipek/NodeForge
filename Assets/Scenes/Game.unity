@@ -29147,9 +29147,9 @@ MonoBehaviour:
   dragSpeed: 0.0025
   zoomSpeed: 50
   minZoom: 2
-  maxZoom: 20
-  xBound: 16
-  yBound: 20
+  maxZoom: 15
+  zoomedInBounds: {x: 21.5, y: 23}
+  zoomedOutBounds: {x: 0.5, y: 12}
 --- !u!4 &1884671828
 Transform:
   m_ObjectHideFlags: 0
