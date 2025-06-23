@@ -257,7 +257,10 @@ public class NodeController : Singleton<NodeController>
             Node node = nodeCollider.GetComponent<Node>();
             if(node != null)
             {
-                newSelectedNodes.Add(node);
+                if(!newSelectedNodes.Contains(node))
+                {
+                    newSelectedNodes.Add(node);
+                }
             }
         }
 
