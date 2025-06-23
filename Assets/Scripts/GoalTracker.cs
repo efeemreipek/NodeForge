@@ -1,5 +1,7 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GoalTracker : MonoBehaviour
 {
@@ -23,7 +25,12 @@ public class GoalTracker : MonoBehaviour
         
         if(amount >= goalAmount)
         {
-            Debug.Log("Goal is reached");
+            StartCoroutine(EndGame());
         }
+    }
+    private IEnumerator EndGame()
+    {
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
