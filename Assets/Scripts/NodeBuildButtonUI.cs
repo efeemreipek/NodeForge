@@ -21,6 +21,7 @@ public class NodeBuildButtonUI : MonoBehaviour
     {
         buttonNameText.text = buttonName;
         button.onClick.AddListener(() => buttonOnClick());
+        button.onClick.AddListener(AudioManager.Instance.PlayBuildClick);
     }
     public void SetButtonEnabled(bool enabled)
     {

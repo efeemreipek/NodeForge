@@ -150,6 +150,7 @@ public class ConnectionManager : Singleton<ConnectionManager>
             ConnectionMono connectionMono = connectionGO.GetComponent<ConnectionMono>();
 
             RemoveConnection(connectionMono.Connection);
+            AudioManager.Instance.PlayDelete();
         }
     }
     private void RemoveConnection(Connection connection)

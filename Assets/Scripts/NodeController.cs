@@ -150,6 +150,8 @@ public class NodeController : Singleton<NodeController>
                 }
             }
         }
+
+        AudioManager.Instance.PlayDelete();
     }
     private void MoveSelectedNodes(Vector3 mouseWorld)
     {
